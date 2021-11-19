@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp;
 
+import com.greenjon902.g_dem__smp.sit.Sit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
@@ -7,6 +8,7 @@ import java.util.logging.Logger;
 public final class G_Dem__SMP extends JavaPlugin {
     private static final PluginComponent[] components =
             {
+                    new Sit()
     };
 
 
