@@ -1,11 +1,13 @@
 package com.greenjon902.g_dem__smp.sit;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.Bat;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.type.Stairs;
+import org.bukkit.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -37,19 +39,33 @@ public class SitAPI {
         logger.info("Sitting " + player.toString());
 
         World world = player.getWorld();
+        Block block = player.getLocation().getBlock();
 
-        Bat chair = (Bat) world.spawnEntity(player.getLocation().add(0.5,-0.5,0.5), EntityType.BAT);
+        Bat chair = (Bat) world.spawnEntity(new Location(world, 0.0, 0.0, 0.0), EntityType.BAT);
+
+        Location location;
+        if (block.getBlockData() instanceof Stairs) {
+            location = block.getLocation().add(0.5, 0.5-chair.getHeight(),0.5);
+
+        } else if (block.getLocation().subtract(0, 1, 0).getBlock().getBlockData() instanceof Stairs) {
+            location = block.getLocation().add(0.5,-0.5-chair.getHeight(),0.5);
+
+        } else {
+            location = block.getLocation().add(0.5, -chair.getHeight(),0.5);
+        }
+
+
         chair.setAwake(true);
         chair.setAI(false);
         chair.setInvulnerable(true);
         chair.setCollidable(false);
         chair.setSilent(true);
         chair.setGravity(false);
+        chair.teleport(location);
         chair.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,
                 999999, 1, false, false ,false));
 
         chair.addPassenger(player);
-        chair.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
 
         this.chairs.put(player, chair);
     }
@@ -63,7 +79,6 @@ public class SitAPI {
         this.chairs.remove(player);
 
         chair.removePassenger(player);
-
         chair.remove();
     }
 
