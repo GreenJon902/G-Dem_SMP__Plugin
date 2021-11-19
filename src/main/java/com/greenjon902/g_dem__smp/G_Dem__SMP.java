@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 public final class G_Dem__SMP extends JavaPlugin {
+    // Please end any components with a comma because that makes merging a lot easier
     private static final PluginComponent[] components =
             {
     };
