@@ -68,6 +68,7 @@ public class SitAPI {
         chair.addPassenger(player);
 
         this.chairs.put(player, chair);
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Mans found a chair init"));
     }
 
     public void stand(Player player) {
@@ -80,6 +81,7 @@ public class SitAPI {
 
         chair.removePassenger(player);
         chair.remove();
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Chairs r for weaklings"));
     }
 
     public void toggle(Player player) {
