@@ -1,0 +1,7 @@
+name: G-Dem_SMP_Plugin
+version: '${project.version}'
+main: com.greenjon902.g_dem__smp.G_Dem__SMP
+api-version: 1.17
+prefix: G-Dem
+authors: [ GreenJon902 ]
+description: The one for all G-Dem SMP plugin
