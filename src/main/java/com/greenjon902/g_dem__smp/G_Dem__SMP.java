@@ -1,6 +1,5 @@
 package com.greenjon902.g_dem__smp;
 
-import com.greenjon902.g_dem__smp.home.Home;
 import com.greenjon902.g_dem__smp.sit.Sit;
 import org.bukkit.plugin.java.JavaPlugin;
 
