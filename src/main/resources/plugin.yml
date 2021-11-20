@@ -5,3 +5,19 @@ api-version: 1.17
 prefix: G-Dem
 authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
+
+commands:
+  setHome:
+    description: Create a home for you or a player
+    usage: /<command> [user] [homename]
+    permission: G_Dem__SMP.home.sethome
+
+  home:
+    description: Teleport you to the given home
+    usage: /<command> [user] [homename]
+    permission: G_Dem__SMP.home.home
+
+  delHome:
+    description: Delete your or a player's home
+    usage: /<command> [user] [homename]
+    permission: G_Dem__SMP.home.delhome
