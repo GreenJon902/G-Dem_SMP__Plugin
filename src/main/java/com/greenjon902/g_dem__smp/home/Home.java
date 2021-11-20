@@ -5,7 +5,6 @@ import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.home.commands.CommandDelHome;
 import com.greenjon902.g_dem__smp.home.commands.CommandHome;
 import com.greenjon902.g_dem__smp.home.commands.CommandSetHome;
-import com.greenjon902.g_dem__smp.sit.commands.CommandSit;
 
 public class Home implements PluginComponent {
     @Override
