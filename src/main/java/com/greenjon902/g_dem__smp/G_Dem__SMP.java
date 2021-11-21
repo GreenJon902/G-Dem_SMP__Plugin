@@ -13,7 +13,7 @@ public final class G_Dem__SMP extends JavaPlugin {
 
     private static G_Dem__SMP instance;
 
-    static G_Dem__SMP getInstance() {
+    public static G_Dem__SMP getInstance() {
         return G_Dem__SMP.instance;
     }
 
