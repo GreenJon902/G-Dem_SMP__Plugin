@@ -21,3 +21,19 @@ commands:
     description: Delete your or a player's home
     usage: /<command> [user] [homename]
     permission: G_Dem__SMP.home.delhome
+
+permissions:
+  G_Dem__SMP.home.sethome:
+    default: true
+  G_Dem__SMP.home.sethome.other:
+    default: op
+
+  G_Dem__SMP.home.home:
+    default: true
+  G_Dem__SMP.home.home.other:
+    default: op
+
+  G_Dem__SMP.home.delhome:
+    default: true
+  G_Dem__SMP.home.delhome.other:
+    default: op
