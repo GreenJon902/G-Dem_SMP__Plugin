@@ -3,10 +3,22 @@ package com.greenjon902.g_dem__smp.homes;
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.homes.commands.*;
+import org.bukkit.Bukkit;
+
+import java.util.logging.Logger;
 
 public class Homes implements PluginComponent {
+    HomesComponentStorage storage = new HomesComponentStorage();
+
     @Override
     public void setup(G_Dem__SMP mainClass) {
+        Logger logger = Bukkit.getLogger();
+
+        logger.info("Loading storage...");
+        storage.load();
+        logger.info("Loaded storage");
+
+        logger.info("Registering commands...");
         //noinspection ConstantConditions
         mainClass.getCommand("setHome").setExecutor(new CommandSetHome());
         //noinspection ConstantConditions
@@ -17,6 +29,7 @@ public class Homes implements PluginComponent {
         mainClass.getCommand("listHomes").setExecutor(new CommandListHomes());
         //noinspection ConstantConditions
         mainClass.getCommand("listAllHomes").setExecutor(new CommandListAllHomes());
+        logger.info("Registered commands");
     }
 
     @Override
@@ -26,6 +39,6 @@ public class Homes implements PluginComponent {
 
     @Override
     public void end(G_Dem__SMP mainClass) {
-
+        storage.save();
     }
 }
