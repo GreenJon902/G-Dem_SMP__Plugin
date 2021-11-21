@@ -2,9 +2,7 @@ package com.greenjon902.g_dem__smp.homes;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
-import com.greenjon902.g_dem__smp.homes.commands.CommandDelHome;
-import com.greenjon902.g_dem__smp.homes.commands.CommandHome;
-import com.greenjon902.g_dem__smp.homes.commands.CommandSetHome;
+import com.greenjon902.g_dem__smp.homes.commands.*;
 
 public class Homes implements PluginComponent {
     @Override
@@ -15,6 +13,10 @@ public class Homes implements PluginComponent {
         mainClass.getCommand("home").setExecutor(new CommandHome());
         //noinspection ConstantConditions
         mainClass.getCommand("delHome").setExecutor(new CommandDelHome());
+        //noinspection ConstantConditions
+        mainClass.getCommand("listHomes").setExecutor(new CommandListHomes());
+        //noinspection ConstantConditions
+        mainClass.getCommand("listAllHomes").setExecutor(new CommandListAllHomes());
     }
 
     @Override
