@@ -11,11 +11,18 @@ public final class G_Dem__SMP extends JavaPlugin {
     };
 
 
+    private static G_Dem__SMP instance;
+
+    static G_Dem__SMP getInstance() {
+        return G_Dem__SMP.instance;
+    }
+
     @Override
     public void onEnable() {
         Logger logger = getLogger();
 
         logger.info("Starting the G-Dem SMP plugin...");
+        G_Dem__SMP.instance = this;
 
         int component_index;
         PluginComponent component;
