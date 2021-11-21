@@ -6,6 +6,9 @@ import com.greenjon902.g_dem__smp.sit.commands.CommandSit;
 import com.greenjon902.g_dem__smp.sit.commands.CommandStandAll;
 
 public class Sit implements PluginComponent {
+    public static SitAPI API = new SitAPI();
+
+
     @Override
     public void setup(G_Dem__SMP mainClass) {
         //noinspection ConstantConditions
@@ -21,6 +24,6 @@ public class Sit implements PluginComponent {
 
     @Override
     public void end(G_Dem__SMP mainClass) {
-        SitAPI.getAPI().standAll();
+        Sit.API.standAll();
     }
 }
