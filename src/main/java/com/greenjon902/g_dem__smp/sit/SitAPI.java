@@ -7,7 +7,10 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Stairs;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Bat;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -16,18 +19,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class SitAPI {
-    protected static SitAPI INSTANCE = new SitAPI();
-
-    protected SitAPI() {
-        INSTANCE = this;
-    }
-
-    public static SitAPI getAPI() {
-        return INSTANCE;
-    }
-
-
-
     private final Map<Player, LivingEntity> chairs = new HashMap<>();
 
     public boolean isSitting(Player player) {

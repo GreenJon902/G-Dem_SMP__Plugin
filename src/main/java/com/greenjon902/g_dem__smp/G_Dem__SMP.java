@@ -17,6 +17,12 @@ public final class G_Dem__SMP extends JavaPlugin {
         return G_Dem__SMP.instance;
     }
 
+    private static G_Dem__SMP instance;
+
+    static G_Dem__SMP getInstance() {
+        return G_Dem__SMP.instance;
+    }
+
     @Override
     public void onEnable() {
         Logger logger = getLogger();
