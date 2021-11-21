@@ -6,17 +6,25 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 public final class G_Dem__SMP extends JavaPlugin {
+    // Please end any components with a comma because that makes merging a lot easier
     private static final PluginComponent[] components =
             {
                     new Homes(),
     };
 
 
+    private static G_Dem__SMP instance;
+
+    static G_Dem__SMP getInstance() {
+        return G_Dem__SMP.instance;
+    }
+
     @Override
     public void onEnable() {
         Logger logger = getLogger();
 
         logger.info("Starting the G-Dem SMP plugin...");
+        G_Dem__SMP.instance = this;
 
         int component_index;
         PluginComponent component;
