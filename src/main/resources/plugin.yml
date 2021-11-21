@@ -22,6 +22,16 @@ commands:
     usage: /<command> [user] [homename]
     permission: G_Dem__SMP.home.delhome
 
+  listHomes:
+    description: List your or a players homes
+    usage: /<command> [user]
+    permission: G_Dem__SMP.home.listHomes
+
+  listAllHomes:
+    description: List all homes of all players
+    usage: /<command>
+    permission: G_Dem__SMP.home.listAllHomes
+
 permissions:
   G_Dem__SMP.home.sethome:
     default: true
@@ -36,4 +46,12 @@ permissions:
   G_Dem__SMP.home.delhome:
     default: true
   G_Dem__SMP.home.delhome.other:
+    default: op
+
+  G_Dem__SMP.home.listHomes:
+    default: true
+  G_Dem__SMP.home.listHomes.other:
+    default: op
+
+  G_Dem__SMP.home.listAllHomes:
     default: op
