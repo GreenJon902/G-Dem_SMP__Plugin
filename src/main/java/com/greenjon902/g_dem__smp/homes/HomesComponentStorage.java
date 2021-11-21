@@ -1,6 +1,7 @@
 package com.greenjon902.g_dem__smp.homes;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
+import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -64,5 +65,8 @@ public class HomesComponentStorage {
 
     public void save() {
 
+    }
+
+    public void setPlayerHome(UUID uniqueId, String name, Location location) {
     }
 }

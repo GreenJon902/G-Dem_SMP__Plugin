@@ -8,7 +8,7 @@ import org.bukkit.Bukkit;
 import java.util.logging.Logger;
 
 public class Homes implements PluginComponent {
-    HomesComponentStorage storage = new HomesComponentStorage();
+    public static final HomesComponentStorage storage = new HomesComponentStorage();
 
     @Override
     public void setup(G_Dem__SMP mainClass) {
