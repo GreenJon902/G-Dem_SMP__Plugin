@@ -1,12 +1,12 @@
-package com.greenjon902.g_dem__smp.home;
+package com.greenjon902.g_dem__smp.homes;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
-import com.greenjon902.g_dem__smp.home.commands.CommandDelHome;
-import com.greenjon902.g_dem__smp.home.commands.CommandHome;
-import com.greenjon902.g_dem__smp.home.commands.CommandSetHome;
+import com.greenjon902.g_dem__smp.homes.commands.CommandDelHome;
+import com.greenjon902.g_dem__smp.homes.commands.CommandHome;
+import com.greenjon902.g_dem__smp.homes.commands.CommandSetHome;
 
-public class Home implements PluginComponent {
+public class Homes implements PluginComponent {
     @Override
     public void setup(G_Dem__SMP mainClass) {
         //noinspection ConstantConditions

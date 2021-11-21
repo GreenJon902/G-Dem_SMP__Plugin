@@ -1,4 +1,4 @@
-package com.greenjon902.g_dem__smp.home.commands;
+package com.greenjon902.g_dem__smp.homes.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
