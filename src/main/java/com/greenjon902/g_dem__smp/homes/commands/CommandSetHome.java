@@ -23,11 +23,11 @@ public class CommandSetHome implements CommandExecutor {
             Player player = (Player) sender;
 
             if (args.length == 0) {
-                Homes.storage.setPlayerHome(player.getUniqueId(), "home", player.getLocation());
+                Homes.storage.setPlayerHome(player.getUniqueId(), "home", player.getLocation(), sender);
             } else if (args.length == 1) {
-                Homes.storage.setPlayerHome(player.getUniqueId(), args[0], player.getLocation());
+                Homes.storage.setPlayerHome(player.getUniqueId(), args[0], player.getLocation(), sender);
             } else if (args.length == 2)  {
-                Homes.storage.setPlayerHome(Bukkit.getOfflinePlayer(args[0]).getUniqueId(), args[1], player.getLocation());
+                Homes.storage.setPlayerHome(Bukkit.getOfflinePlayer(args[0]).getUniqueId(), args[1], player.getLocation(), sender);
             } else {
                 player.sendMessage("/setHome can only have a maximum of 2 arguments");
             }

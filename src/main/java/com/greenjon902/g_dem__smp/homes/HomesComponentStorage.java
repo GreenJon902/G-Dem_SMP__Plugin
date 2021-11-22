@@ -2,8 +2,8 @@ package com.greenjon902.g_dem__smp.homes;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -13,9 +13,10 @@ import java.util.UUID;
 
 public class HomesComponentStorage {
     private File configFile;
-    private FileConfiguration config;
+    @SuppressWarnings("FieldCanBeLocal")
+    private YamlConfiguration config;
     private File homesFolder;
-    private HashMap<UUID, FileConfiguration> homes;
+    private HashMap<UUID, YamlConfiguration> homes;
 
     private void checkFiles() {
         configFile = new File(G_Dem__SMP.getInstance().getDataFolder(), "homes/config.yml");
@@ -45,21 +46,22 @@ public class HomesComponentStorage {
 
         homes = new HashMap<>();
 
+        YamlConfiguration home;
         File[] files = homesFolder.listFiles();
         int file_index;
         File file;
         //noinspection ConstantConditions
         for (file_index = 0; file_index < files.length; file_index++) {
             file = files[file_index];
-            config = new YamlConfiguration();
+            home = new YamlConfiguration();
 
             try {
-                config.load(file);
+                home.load(file);
             } catch (IOException | InvalidConfigurationException e) {
                 e.printStackTrace();
             }
 
-            homes.put(UUID.fromString(file.getName().replace(".yml", "")), config);
+            homes.put(UUID.fromString(file.getName().replace(".yml", "")), home);
         }
     }
 
@@ -67,6 +69,41 @@ public class HomesComponentStorage {
 
     }
 
-    public void setPlayerHome(UUID uniqueId, String name, Location location) {
+    public void setPlayerHome(UUID uniqueId, String name, Location location, CommandSender commandSender) {
+        if (!homes.containsKey(uniqueId)) {
+            homes.put(uniqueId, new YamlConfiguration());
+        }
+        YamlConfiguration home = homes.get(uniqueId);
+        if (home.isSet(name)) {
+            commandSender.sendMessage("That home is already set!");
+        } else {
+            home.set(name, Home.fromLocation(location));
+            //noinspection ConstantConditions
+            commandSender.sendMessage("Set home called " + name + " at " + location.getBlock().getX() + " " +
+                    location.getBlock().getY() + " " + location.getBlock().getZ() + " in " +
+                    location.getWorld().getName());
+        }
+    }
+}
+
+class Home {
+    public double x;
+    public double y;
+    public double z;
+    public double pitch;
+    public double yaw;
+
+    public String world;
+
+    public static Home fromLocation(Location location) {
+        Home home = new Home();
+        home.x = location.getX();
+        home.y = location.getY();
+        home.z = location.getZ();
+        home.pitch = location.getPitch();
+        home.yaw = location.getYaw();
+        //noinspection ConstantConditions
+        home.world = location.getWorld().getName();
+        return home;
     }
 }
