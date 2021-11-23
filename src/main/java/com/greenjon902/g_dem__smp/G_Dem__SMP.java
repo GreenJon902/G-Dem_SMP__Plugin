@@ -59,6 +59,7 @@ public final class G_Dem__SMP extends JavaPlugin {
         PluginComponent component;
         for (component_index=0; component_index < components.length; component_index++) {
             component = components[component_index];
+            logger.info("Disabling " + component.getClass().toString());
             component.end(this);
         }
 
