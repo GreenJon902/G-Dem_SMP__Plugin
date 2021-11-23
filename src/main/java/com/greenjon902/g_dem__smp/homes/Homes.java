@@ -39,6 +39,10 @@ public class Homes implements PluginComponent {
 
     @Override
     public void end(G_Dem__SMP mainClass) {
+        Logger logger = Bukkit.getLogger();
+
+        logger.info("Saving storage...");
         storage.save();
+        logger.info("Saved storage");
     }
 }
