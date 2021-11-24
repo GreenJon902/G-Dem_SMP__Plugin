@@ -15,3 +15,9 @@ commands:
     description: Stand All Players
     usage: /standAll
     permission: G_Dem__SMP.sit.standAll
+
+permissions:
+  G_Dem__SMP.sit.sit:
+    default: true
+  G_Dem__SMP.sit.standAll:
+    default: op
