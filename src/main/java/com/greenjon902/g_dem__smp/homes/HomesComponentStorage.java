@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class HomesComponentStorage {
@@ -17,17 +18,17 @@ public class HomesComponentStorage {
     private YamlConfiguration config;
     @SuppressWarnings("FieldCanBeLocal")
     private File homesFolder;
-    private HashMap<UUID, HashMap<String, YamlConfiguration>> homes;
+    private HashMap<UUID, HashMap<String, Home>> homes;
 
     private void checkFiles() {
-        configFile = new File(G_Dem__SMP.getInstance().getDataFolder(), "homes/config.yml");
+        configFile = new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/config.yml");
         if (!configFile.exists()) {
             //noinspection ResultOfMethodCallIgnored
             configFile.getParentFile().mkdirs();
             G_Dem__SMP.getInstance().saveResource("homes/config.yml", false);
         }
 
-        homesFolder = new File(G_Dem__SMP.getInstance().getDataFolder(), "homes/playerHomes");
+        homesFolder = new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/playerHomes");
         if (!homesFolder.exists()) {
             //noinspection ResultOfMethodCallIgnored
             homesFolder.mkdirs();
@@ -43,24 +44,51 @@ public class HomesComponentStorage {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
+
+        homes = new HashMap<>();
     }
 
 
 
     public void save() {
-            checkFiles();
+        checkFiles();
+
+
+        Home playerHome;
+        File playerFolder;
+        String name;
+        Home home;
+        for (UUID playerUid : homes.keySet()) {
+
+            playerFolder = new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/playerHomes/" + playerUid.toString() + "/");
+            if (!playerFolder.exists()) {
+                //noinspection ResultOfMethodCallIgnored
+                playerFolder.mkdirs();
+            }
+
+            for (Map.Entry<String, Home> homeEntry : homes.get(playerUid).entrySet()) {
+                name = homeEntry.getKey();
+                home = homeEntry.getValue();
+
+                try {
+                    home.toYamlConfiguration().save(new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/playerHomes/" + playerUid + "/" + name + ".yml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+    }
 
     public void setPlayerHome(UUID uniqueId, String name, Location location, CommandSender commandSender) {
         if (!homes.containsKey(uniqueId)) {
             homes.put(uniqueId, new HashMap<>());
         }
-        HashMap<String, YamlConfiguration> playerHomes = homes.get(uniqueId);
+        HashMap<String, Home> playerHomes = homes.get(uniqueId);
         if (playerHomes.containsKey(name)) {
             commandSender.sendMessage("That home is already set!");
         } else {
             System.out.println(name);
-            playerHomes.put(name, Home.fromLocation(location).toYamlConfiguration());
+            playerHomes.put(name, Home.fromLocation(location));
             //noinspection ConstantConditions
             commandSender.sendMessage("Set home called " + name + " at " + location.getBlock().getX() + " " +
                     location.getBlock().getY() + " " + location.getBlock().getZ() + " in " +
