@@ -58,9 +58,10 @@ public class HomesComponentStorage {
         File playerFolder;
         String name;
         Home home;
+        File playerHomesFolder = new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/playerHomes/");
         for (UUID playerUid : homes.keySet()) {
 
-            playerFolder = new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/playerHomes/" + playerUid.toString() + "/");
+            playerFolder = new File(playerHomesFolder, playerUid.toString() + "/");
             if (!playerFolder.exists()) {
                 //noinspection ResultOfMethodCallIgnored
                 playerFolder.mkdirs();
@@ -71,7 +72,7 @@ public class HomesComponentStorage {
                 home = homeEntry.getValue();
 
                 try {
-                    home.toYamlConfiguration().save(new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/playerHomes/" + playerUid + "/" + name + ".yml"));
+                    home.toYamlConfiguration().save(new File(playerFolder, name + ".yml"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
