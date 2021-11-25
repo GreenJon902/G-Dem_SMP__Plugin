@@ -46,6 +46,28 @@ public class HomesComponentStorage {
         }
 
         homes = new HashMap<>();
+        File playerHomesFolder = new File(G_Dem__SMP.getInstance().getDataFolder(), "/homes/playerHomes/");
+
+        UUID playerUid;
+        //noinspection ConstantConditions
+        for (File file : playerHomesFolder.listFiles()) {
+
+            if (!file.isFile() & !file.getName().equals(".DS_Store")) {
+                playerUid = UUID.fromString(file.getName().replace(".yml", ""));
+                homes.put(playerUid, new HashMap<>());
+
+                //noinspection ConstantConditions
+                for (File file2 : new File(playerHomesFolder, playerUid.toString()).listFiles()) {
+                    System.out.println(file + file.getName() + file.getName() + file2);
+                    if (file2.isFile() & !file2.getName().equals(".DS_Store")) {
+                        homes.get(playerUid).put(file2.getName().replace(".yml", ""),
+                                Home.fromYamlConfiguration(YamlConfiguration.loadConfiguration(file2)));
+                        System.out.println(file + file.getName() + file.getName() + file2);
+                    }
+                }
+            }
+        }
+        System.out.println(homes);
     }
 
 
@@ -116,6 +138,17 @@ class Home {
         home.yaw = location.getYaw();
         //noinspection ConstantConditions
         home.world = location.getWorld().getName();
+        return home;
+    }
+
+    public static Home fromYamlConfiguration(YamlConfiguration yamlConfiguration) {
+        Home home = new Home();
+        home.x = yamlConfiguration.getDouble("x");
+        home.y = yamlConfiguration.getDouble("y");
+        home.z = yamlConfiguration.getDouble("z");
+        home.pitch = yamlConfiguration.getDouble("pitch");
+        home.yaw = yamlConfiguration.getDouble("yaw");
+        home.world = yamlConfiguration.getString("world");
         return home;
     }
 
