@@ -1,22 +1,19 @@
 package com.greenjon902.g_dem__smp;
 
+
+import com.greenjon902.g_dem__smp.ticks.Ticks;
 import com.greenjon902.g_dem__smp.sit.Sit;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.util.logging.Logger;
 
 public final class G_Dem__SMP extends JavaPlugin {
     // Please end any components with a comma because that makes merging a lot easier
     private static final PluginComponent[] components =
             {
+                    new Ticks(),
                     new Sit(),
     };
-    private static G_Dem__SMP instance;
-
-    static G_Dem__SMP getInstance() {
-        return G_Dem__SMP.instance;
-    }
-
+  
     private static G_Dem__SMP instance;
 
     static G_Dem__SMP getInstance() {
