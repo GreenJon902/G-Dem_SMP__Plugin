@@ -11,27 +11,11 @@ import java.io.IOException;
 
 
 public class Ticks implements PluginComponent {
-    File configFile;
-    YamlConfiguration config;
     File ticksFile;
 
     @Override
     public void setup(G_Dem__SMP mainClass) {
-        configFile = new File(G_Dem__SMP.getInstance().getDataFolder(), "/ticks/config.yml");
-        if (!configFile.exists()) {
-            //noinspection ResultOfMethodCallIgnored
-            configFile.getParentFile().mkdirs();
-            G_Dem__SMP.getInstance().saveResource("ticks/config.yml", false);
-        }
-        config = new YamlConfiguration();
-        try {
-            config.load(configFile);
-        } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
-        }
-
-
-        ticksFile = new File(G_Dem__SMP.getInstance().getDataFolder(), "/ticks/ticks.csv");
+        ticksFile = new File(G_Dem__SMP.getInstance().getDataFolder(), "/ticks/records/");
         if (!ticksFile.exists()) {
             //noinspection ResultOfMethodCallIgnored
             ticksFile.mkdirs();
@@ -40,8 +24,6 @@ public class Ticks implements PluginComponent {
 
     @Override
     public void enable(G_Dem__SMP mainClass) {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(mainClass, Ticks::takeRecord, 0,
-                20L *60*config.getInt("record-interval"));
     }
 
     @Override
