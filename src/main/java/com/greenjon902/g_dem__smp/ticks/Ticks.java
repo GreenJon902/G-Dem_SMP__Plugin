@@ -13,6 +13,7 @@ import java.io.IOException;
 public class Ticks implements PluginComponent {
     File configFile;
     YamlConfiguration config;
+    File ticksFile;
 
     @Override
     public void setup(G_Dem__SMP mainClass) {
@@ -29,6 +30,12 @@ public class Ticks implements PluginComponent {
             e.printStackTrace();
         }
 
+
+        ticksFile = new File(G_Dem__SMP.getInstance().getDataFolder(), "/ticks/ticks.csv");
+        if (!ticksFile.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            ticksFile.mkdirs();
+        }
     }
 
     @Override
