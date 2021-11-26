@@ -1,6 +1,7 @@
 package com.greenjon902.g_dem__smp.homes;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -33,6 +34,13 @@ public class HomesComponentStorage {
             //noinspection ResultOfMethodCallIgnored
             homesFolder.mkdirs();
         }
+    }
+
+    public Location getHomeLocation(String name, UUID uniqueId) {
+        if (homes.containsKey(uniqueId) && homes.get(uniqueId).containsKey(name)) {
+            return homes.get(uniqueId).get(name).toLocation();
+        }
+        return null;
     }
 
     public void load() {
@@ -139,6 +147,10 @@ class Home {
         //noinspection ConstantConditions
         home.world = location.getWorld().getName();
         return home;
+    }
+
+    public Location toLocation() {
+        return new Location(Bukkit.getWorld(world), x, y, z, (float) yaw, (float) pitch);
     }
 
     public static Home fromYamlConfiguration(YamlConfiguration yamlConfiguration) {
