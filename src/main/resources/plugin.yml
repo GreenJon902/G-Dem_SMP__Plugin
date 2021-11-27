@@ -5,3 +5,12 @@ api-version: 1.17
 prefix: G-Dem
 authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
+
+commands:
+  modifyTicks:
+    description: Modify someones tick amount
+    usage: /<command> <target> <add|subtract|set> <amount>
+
+permissions:
+  G_Dem__SMP.ticks.modify:
+    default: op
