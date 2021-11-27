@@ -14,4 +14,4 @@ commands:
 
 permissions:
   G_Dem__SMP.pluginName.commandName:
-    default: true # true for everyone, false for no one, op for only operators, not op for only people who arent operators
+    default: true # true for everyone, false for no one, op for only operators, not op for only people who aren't operators
