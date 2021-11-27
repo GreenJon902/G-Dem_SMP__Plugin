@@ -7,10 +7,6 @@ authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
 
 commands:
-  sit:
-    description: Toggle sit mode
-    usage: /sit
-    permission: G_Dem__SMP.sit.sit
   standAll:
     description: Stand All Players
     usage: /standAll
