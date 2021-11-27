@@ -5,3 +5,13 @@ api-version: 1.17
 prefix: G-Dem
 authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
+
+commands:
+  commandName:
+    description: A command template
+    usage: /commandName required_arguemnt [optional_arguement]
+    permission: G_Dem__SMP.pluginName.commandName
+
+permissions:
+  G_Dem__SMP.pluginName.commandName:
+    default: true # true for everyone, false for no one, op for only operators, not op for only people who arent operators
