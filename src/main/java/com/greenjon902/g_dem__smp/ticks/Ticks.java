@@ -2,6 +2,7 @@ package com.greenjon902.g_dem__smp.ticks;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
+import com.greenjon902.g_dem__smp.ticks.commands.CommandModifyTicks;
 import org.bukkit.entity.Player;
 
 import java.io.BufferedWriter;
@@ -28,6 +29,9 @@ public class Ticks implements PluginComponent {
             //noinspection ResultOfMethodCallIgnored
             ticksFolder.mkdirs();
         }
+
+        //noinspection ConstantConditions
+        mainClass.getCommand("modifyTicks").setExecutor(new CommandModifyTicks());
     }
 
     @Override
