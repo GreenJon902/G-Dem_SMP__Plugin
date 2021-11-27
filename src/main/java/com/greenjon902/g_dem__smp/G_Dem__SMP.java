@@ -1,6 +1,7 @@
 package com.greenjon902.g_dem__smp;
 
 
+import com.greenjon902.g_dem__smp.sit.Sit;
 import com.greenjon902.g_dem__smp.ticks.Ticks;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,6 +12,7 @@ public final class G_Dem__SMP extends JavaPlugin {
     private static final PluginComponent[] components =
             {
                     new Ticks(),
+                    new Sit(),
     };
   
     private static G_Dem__SMP instance;
