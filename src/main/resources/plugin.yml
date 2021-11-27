@@ -5,9 +5,3 @@ api-version: 1.17
 prefix: G-Dem
 authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
-
-commands:
-  standAll:
-    description: Stand All Players
-    usage: /standAll
-    permission: G_Dem__SMP.sit.standAll
