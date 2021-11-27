@@ -73,6 +73,17 @@ public class Ticks implements PluginComponent {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void set(Player player, int amount) {
+
+    }
+
+    public static void add(Player player, int amount) {
+
+    }
+
+    public static void subtract(Player player, int amount) {
 
     }
 }
