@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp.sit;
 
+import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -13,6 +14,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +61,12 @@ public class SitAPI {
         chair.addPassenger(player);
 
         this.chairs.put(player, chair);
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Mans found a chair init"));
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Mans found a chair init"));
+            }
+        }.runTaskLater(G_Dem__SMP.getInstance(), 2);
     }
 
     public void stand(Player player) {
