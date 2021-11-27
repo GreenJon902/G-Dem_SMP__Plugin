@@ -8,10 +8,18 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 
 public class Ticks implements PluginComponent {
     private static File ticksFolder;
+    private static final HashMap<UUID, BufferedWriter> writers = new HashMap<>();
 
     @Override
     public void setup(G_Dem__SMP mainClass) {
@@ -29,15 +37,35 @@ public class Ticks implements PluginComponent {
 
     @Override
     public void end(G_Dem__SMP mainClass) {
+        Logger logger = G_Dem__SMP.getInstance().getLogger();
 
+        for (UUID key : writers.keySet()) {
+            try {
+                logger.info("Closing BufferedWriter for " + key);
+                writers.get(key).close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void takeRecord(Player player) {
         try {
-            BufferedWriter output = new BufferedWriter(new FileWriter(new File(ticksFolder, String.valueOf(player.getUniqueId()) + ".txt"), true));
-            output.write(",");
+            if (!writers.containsKey(player.getUniqueId())) {
+                G_Dem__SMP.getInstance().getLogger().info("Creating new BufferedWriter for user " + player.getName() + " who's uuid is " + player.getUniqueId());
+                writers.put(player.getUniqueId(), new BufferedWriter(new FileWriter(new File(ticksFolder, player.getUniqueId() + ".txt"), true)));
+            }
+            BufferedWriter output = writers.get(player.getUniqueId());
+
+            Date date = Calendar.getInstance().getTime();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd - hh:mm");
+            String strDate = dateFormat.format(date);
+            output.write(strDate);
+
+            output.write(" = ");
             output.write(String.valueOf(player.getTicksLived()));
-            output.close();
+            output.write("\n");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
