@@ -10,7 +10,25 @@ commands:
   modifyTicks:
     description: Modify someones tick amount
     usage: /<command> <target> <add|subtract|set> <amount>
+  
+
+  sit:
+    description: Toggle sit mode
+    usage: /sit
+    permission: G_Dem__SMP.sit.sit
+  standAll:
+    description: Stand All Players
+    usage: /standAll
+    permission: G_Dem__SMP.sit.standAll
+
+
 
 permissions:
   G_Dem__SMP.ticks.modify:
+    default: op
+  
+
+  G_Dem__SMP.sit.sit:
+    default: true
+  G_Dem__SMP.sit.standAll:
     default: op
