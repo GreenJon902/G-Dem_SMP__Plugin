@@ -2,6 +2,9 @@ package com.greenjon902.g_dem__smp.ticks;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
+import com.greenjon902.g_dem__smp.ticks.commands.CommandModifyTicks;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.BufferedWriter;
@@ -20,6 +23,8 @@ import java.util.logging.Logger;
 public class Ticks implements PluginComponent {
     private static File ticksFolder;
     private static final HashMap<UUID, BufferedWriter> writers = new HashMap<>();
+    private static File tickOffsetsFile;
+    private static YamlConfiguration tickOffsets;
 
     @Override
     public void setup(G_Dem__SMP mainClass) {
@@ -28,6 +33,23 @@ public class Ticks implements PluginComponent {
             //noinspection ResultOfMethodCallIgnored
             ticksFolder.mkdirs();
         }
+
+        tickOffsetsFile = new File(ticksFolder, "tickOffsets.yml");
+        tickOffsets = new YamlConfiguration();
+        try {
+            if (!tickOffsetsFile.exists()) {
+                //noinspection ResultOfMethodCallIgnored
+                tickOffsetsFile.getParentFile().mkdirs();
+                //noinspection ResultOfMethodCallIgnored
+                tickOffsetsFile.createNewFile();
+            }
+            tickOffsets.load(tickOffsetsFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        //noinspection ConstantConditions
+        mainClass.getCommand("modifyTicks").setExecutor(new CommandModifyTicks());
     }
 
     @Override
@@ -47,6 +69,12 @@ public class Ticks implements PluginComponent {
                 e.printStackTrace();
             }
         }
+
+        try {
+            tickOffsets.save(tickOffsetsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void takeRecord(Player player) {
@@ -63,12 +91,24 @@ public class Ticks implements PluginComponent {
             output.write(strDate);
 
             output.write(" = ");
-            output.write(String.valueOf(player.getTicksLived()));
+            output.write(String.valueOf(player.getTicksLived() +
+                    tickOffsets.getInt(String.valueOf(player.getUniqueId()), 0)));
             output.write("\n");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public static void set(Player player, int amount) {
+        tickOffsets.set(String.valueOf(player.getUniqueId()), amount - player.getTicksLived());
+    }
+
+    public static void add(Player player, int amount) {
+        tickOffsets.set(String.valueOf(player.getUniqueId()), tickOffsets.getInt(String.valueOf(player.getUniqueId())) + amount);
+    }
+
+    public static void subtract(Player player, int amount) {
+        add(player, -amount);
     }
 }
