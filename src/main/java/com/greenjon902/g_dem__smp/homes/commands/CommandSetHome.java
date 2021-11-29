@@ -27,7 +27,10 @@ public class CommandSetHome implements CommandExecutor {
             } else if (args.length == 1) {
                 Homes.storage.setPlayerHome(player.getUniqueId(), args[0], player.getLocation(), sender);
             } else if (args.length == 2)  {
-                Homes.storage.setPlayerHome(Bukkit.getOfflinePlayer(args[0]).getUniqueId(), args[1], player.getLocation(), sender);
+                //noinspection ConstantConditions
+                if (sender.hasPermission("G_Dem__SMP.homes.sethome.other") || Bukkit.getOfflinePlayer(Bukkit.getOfflinePlayer(args[0]).getUniqueId()).getName().equals(sender.getName())) {
+                    Homes.storage.setPlayerHome(Bukkit.getOfflinePlayer(args[0]).getUniqueId(), args[1], player.getLocation(), sender);
+                }
             } else {
                 player.sendMessage("/setHome can only have a maximum of 2 arguments");
             }

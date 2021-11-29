@@ -35,15 +35,16 @@ public class CommandHome implements CommandExecutor {
                 name = args[0];
             }
 
-            Location homeLocation = Homes.storage.getHomeLocation(name, uniqueId);
-            player.teleport(homeLocation);
             //noinspection ConstantConditions
-            sender.sendMessage("Teleported to home called " + name + " at " + homeLocation.getBlock().getX() + " " +
-                    homeLocation.getBlock().getY() + " " + homeLocation.getBlock().getZ() + " in " +
-                    homeLocation.getWorld().getName());
+            if (sender.hasPermission("G_Dem__SMP.homes.home.other") || Bukkit.getOfflinePlayer(uniqueId).getName().equals(sender.getName())) {
+                Location homeLocation = Homes.storage.getHomeLocation(name, uniqueId);
+                player.teleport(homeLocation);
+                //noinspection ConstantConditions
+                sender.sendMessage("Teleported to home called " + name + " at " + homeLocation.getBlock().getX() + " " +
+                        homeLocation.getBlock().getY() + " " + homeLocation.getBlock().getZ() + " in " +
+                        homeLocation.getWorld().getName());
+            }
         }
-
-
         return true;
     }
 }

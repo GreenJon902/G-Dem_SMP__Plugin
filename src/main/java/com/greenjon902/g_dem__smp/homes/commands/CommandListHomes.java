@@ -26,7 +26,10 @@ public class CommandListHomes implements CommandExecutor {
         } else {
             uniqueId = Bukkit.getOfflinePlayer(args[0]).getUniqueId();
         }
-        sender.sendMessage(Homes.storage.getPlayerHomes(uniqueId).toString());
+        //noinspection ConstantConditions
+        if (sender.hasPermission("G_Dem__SMP.homes.listhome.other") || Bukkit.getOfflinePlayer(uniqueId).getName().equals(sender.getName())) {
+            sender.sendMessage(Homes.storage.getPlayerHomes(uniqueId).toString());
+        }
 
         return true;
     }
