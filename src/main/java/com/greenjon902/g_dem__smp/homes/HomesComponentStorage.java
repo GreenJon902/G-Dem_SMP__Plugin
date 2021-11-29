@@ -141,6 +141,10 @@ public class HomesComponentStorage {
 
         return allHomes;
     }
+
+    public void deleteHome(UUID user, String home) {
+        homes.get(user).remove(home);
+    }
 }
 
 class Home {
