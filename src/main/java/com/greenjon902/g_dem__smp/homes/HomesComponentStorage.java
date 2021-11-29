@@ -131,6 +131,16 @@ public class HomesComponentStorage {
     public Set<String> getPlayerHomes(UUID uniqueId) {
         return homes.get(uniqueId).keySet();
     }
+
+    public HashMap<UUID, Set<String>> getAllPlayerHomes() {
+        HashMap<UUID, Set<String>> allHomes = new HashMap<>();
+
+        for (UUID uniqueId : homes.keySet()) {
+            allHomes.put(uniqueId, getPlayerHomes(uniqueId));
+        }
+
+        return allHomes;
+    }
 }
 
 class Home {
