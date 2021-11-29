@@ -48,10 +48,10 @@ permissions:
   G_Dem__SMP.homes.delhome.other:
     default: op
 
-  G_Dem__SMP.homes.listHomes:
+  G_Dem__SMP.homes.listhomes:
     default: true
-  G_Dem__SMP.homes.listHomes.other:
+  G_Dem__SMP.homes.listhomes.other:
     default: op
 
-  G_Dem__SMP.homes.listAllHomes:
+  G_Dem__SMP.homes.listallhomes:
     default: op
