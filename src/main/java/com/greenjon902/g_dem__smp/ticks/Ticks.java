@@ -20,14 +20,14 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 
-public class Ticks implements PluginComponent {
+public class Ticks extends PluginComponent {
     private static File ticksFolder;
     private static final HashMap<UUID, BufferedWriter> writers = new HashMap<>();
     private static File tickOffsetsFile;
     private static YamlConfiguration tickOffsets;
 
     @Override
-    public void setup(G_Dem__SMP mainClass) {
+    public void setup() {
         ticksFolder = new File(G_Dem__SMP.getInstance().getDataFolder(), "/ticks/records");
         if (!ticksFolder.exists()) {
             //noinspection ResultOfMethodCallIgnored
@@ -49,16 +49,16 @@ public class Ticks implements PluginComponent {
         }
 
         //noinspection ConstantConditions
-        mainClass.getCommand("modifyTicks").setExecutor(new CommandModifyTicks());
+        G_Dem__SMP.getInstance().getCommand("modifyTicks").setExecutor(new CommandModifyTicks());
     }
 
     @Override
-    public void enable(G_Dem__SMP mainClass) {
-        mainClass.getServer().getPluginManager().registerEvents(new PlayerSessionEvents(), mainClass);
+    public void enable() {
+        G_Dem__SMP.getInstance().getServer().getPluginManager().registerEvents(new PlayerSessionEvents(), G_Dem__SMP.getInstance());
     }
 
     @Override
-    public void end(G_Dem__SMP mainClass) {
+    public void end() {
         Logger logger = G_Dem__SMP.getInstance().getLogger();
 
         for (UUID key : writers.keySet()) {
