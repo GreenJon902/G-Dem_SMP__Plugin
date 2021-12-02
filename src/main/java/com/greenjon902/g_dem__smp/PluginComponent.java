@@ -1,10 +1,19 @@
 package com.greenjon902.g_dem__smp;
 
-public interface PluginComponent {
-    public void setup(G_Dem__SMP mainClass);
+public abstract class PluginComponent {
+    public void setup() {
+        PluginComponent.instance = this;
+    };
 
-    public void enable(G_Dem__SMP mainClass);
+    public abstract void enable();
 
-    public void end(G_Dem__SMP mainClass);
+    public abstract void end();
 
+
+
+    private static PluginComponent instance;
+
+    public static PluginComponent getInstance() {
+        return PluginComponent.instance;
+    }
 }
