@@ -5,7 +5,7 @@ import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.sit.commands.CommandSit;
 import com.greenjon902.g_dem__smp.sit.commands.CommandStandAll;
 
-public class Sit extends PluginComponent {
+public class Sit implements PluginComponent {
     public static SitAPI API = new SitAPI();
 
 

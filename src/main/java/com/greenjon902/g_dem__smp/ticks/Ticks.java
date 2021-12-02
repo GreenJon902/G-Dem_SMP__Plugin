@@ -20,7 +20,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 
-public class Ticks extends PluginComponent {
+public class Ticks implements PluginComponent {
     private static File ticksFolder;
     private static final HashMap<UUID, BufferedWriter> writers = new HashMap<>();
     private static File tickOffsetsFile;
