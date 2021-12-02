@@ -5,25 +5,25 @@ import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.sit.commands.CommandSit;
 import com.greenjon902.g_dem__smp.sit.commands.CommandStandAll;
 
-public class Sit implements PluginComponent {
+public class Sit extends PluginComponent {
     public static SitAPI API = new SitAPI();
 
 
     @Override
-    public void setup(G_Dem__SMP mainClass) {
+    public void setup() {
         //noinspection ConstantConditions
-        mainClass.getCommand("sit").setExecutor(new CommandSit());
+        G_Dem__SMP.getInstance().getCommand("sit").setExecutor(new CommandSit());
         //noinspection ConstantConditions
-        mainClass.getCommand("standAll").setExecutor(new CommandStandAll());
+        G_Dem__SMP.getInstance().getCommand("standAll").setExecutor(new CommandStandAll());
     }
 
     @Override
-    public void enable(G_Dem__SMP mainClass) {
+    public void enable() {
 
     }
 
     @Override
-    public void end(G_Dem__SMP mainClass) {
+    public void end() {
         Sit.API.standAll();
     }
 }
