@@ -1,0 +1,4 @@
+# homes/config.yml
+# Warp cool down is in seconds
+confirmHomeDelete: true
+cooldown: 0

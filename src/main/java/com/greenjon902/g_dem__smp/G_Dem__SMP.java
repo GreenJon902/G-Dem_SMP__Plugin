@@ -1,6 +1,6 @@
 package com.greenjon902.g_dem__smp;
 
-
+import com.greenjon902.g_dem__smp.homes.Homes;
 import com.greenjon902.g_dem__smp.sit.Sit;
 import com.greenjon902.g_dem__smp.ticks.Ticks;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,6 +11,7 @@ public final class G_Dem__SMP extends JavaPlugin {
     // Please end any components with a comma because that makes merging a lot easier
     private static final PluginComponent[] components =
             {
+                    new Homes(),
                     new Ticks(),
                     new Sit(),
     };
@@ -44,7 +45,6 @@ public final class G_Dem__SMP extends JavaPlugin {
         }
 
         logger.info("Started the G-Dem SMP plugin...");
-
     }
 
     @Override
