@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp.homes.commands;
 
+import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.homes.Homes;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -29,7 +30,7 @@ public class CommandDelHome implements CommandExecutor {
             }
             //noinspection ConstantConditions
             if (sender.hasPermission("G_Dem__SMP.homes.delhome.other") || Bukkit.getOfflinePlayer(user).getName().equals(sender.getName())) {
-                Homes.storage.deleteHome(user, home);
+                ((Homes) G_Dem__SMP.getComponent("Homes")).storage.deleteHome(user, home);
             }
         }
 
