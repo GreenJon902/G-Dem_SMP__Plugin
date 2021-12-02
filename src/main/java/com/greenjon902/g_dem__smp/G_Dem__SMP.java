@@ -5,16 +5,19 @@ import com.greenjon902.g_dem__smp.sit.Sit;
 import com.greenjon902.g_dem__smp.ticks.Ticks;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 public final class G_Dem__SMP extends JavaPlugin {
     // Please end any components with a comma because that makes merging a lot easier
-    private static final PluginComponent[] components =
-            {
-                    new Homes(),
-                    new Ticks(),
-                    new Sit(),
-    };
+    private static final HashMap<String, PluginComponent> components = new HashMap<String, PluginComponent>() {{
+      put("Homes", new Homes());
+      put("Ticks", new Ticks());
+      put("Sit", new Sit());
+    }};
+
+    public static PluginComponent getComponent(String name) {
+        return components.get(name);
   
     private static G_Dem__SMP instance;
 
@@ -29,17 +32,16 @@ public final class G_Dem__SMP extends JavaPlugin {
         logger.info("Starting the G-Dem SMP plugin...");
         G_Dem__SMP.instance = this;
 
-        int component_index;
         PluginComponent component;
 
-        for (component_index=0; component_index < components.length; component_index++) {
-            component = components[component_index];
+        for (String component_name : components.keySet()) {
+            component = components.get(component_name);
             logger.info("Setting up " + component.getClass().toString());
             component.setup();
         }
 
-        for (component_index=0; component_index < components.length; component_index++) {
-            component = components[component_index];
+        for (String component_name : components.keySet()) {
+            component = components.get(component_name);
             logger.info("Enabling " + component.getClass().toString());
             component.enable();
         }
@@ -53,10 +55,9 @@ public final class G_Dem__SMP extends JavaPlugin {
 
         logger.info("Ending the G-Dem SMP plugin...");
 
-        int component_index;
         PluginComponent component;
-        for (component_index=0; component_index < components.length; component_index++) {
-            component = components[component_index];
+        for (String component_name : components.keySet()) {
+            component = components.get(component_name);
             logger.info("Disabling " + component.getClass().toString());
             component.end();
         }
