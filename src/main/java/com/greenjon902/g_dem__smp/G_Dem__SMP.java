@@ -18,6 +18,7 @@ public final class G_Dem__SMP extends JavaPlugin {
 
     public static PluginComponent getComponent(String name) {
         return components.get(name);
+    }
   
     private static G_Dem__SMP instance;
 
