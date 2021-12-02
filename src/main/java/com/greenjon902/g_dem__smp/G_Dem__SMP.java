@@ -1,5 +1,8 @@
 package com.greenjon902.g_dem__smp;
 
+import com.greenjon902.g_dem__smp.homes.Homes;
+import com.greenjon902.g_dem__smp.sit.Sit;
+import com.greenjon902.g_dem__smp.ticks.Ticks;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -8,10 +11,18 @@ import java.util.logging.Logger;
 public final class G_Dem__SMP extends JavaPlugin {
     // Please end any components with a comma because that makes merging a lot easier
     private static final HashMap<String, PluginComponent> components = new HashMap<String, PluginComponent>() {{
+      put("Homes", new Homes());
+      put("Ticks", new Ticks());
+      put("Sit", new Sit());
     }};
 
     public static PluginComponent getComponent(String name) {
         return components.get(name);
+  
+    private static G_Dem__SMP instance;
+
+    public static G_Dem__SMP getInstance() {
+        return G_Dem__SMP.instance;
     }
 
     @Override
@@ -19,6 +30,7 @@ public final class G_Dem__SMP extends JavaPlugin {
         Logger logger = getLogger();
 
         logger.info("Starting the G-Dem SMP plugin...");
+        G_Dem__SMP.instance = this;
 
         PluginComponent component;
 
@@ -35,7 +47,6 @@ public final class G_Dem__SMP extends JavaPlugin {
         }
 
         logger.info("Started the G-Dem SMP plugin...");
-
     }
 
     @Override

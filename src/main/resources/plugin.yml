@@ -5,3 +5,80 @@ api-version: 1.17
 prefix: G-Dem
 authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
+
+commands:
+  setHome:
+    description: Create a home for you or a player
+    usage: /<command> [user] [homename]
+    permission: G_Dem__SMP.homes.sethome
+
+  home:
+    description: Teleport you to the given home
+    usage: /<command> [user] [homename]
+    permission: G_Dem__SMP.homes.home
+
+  delHome:
+    description: Delete your or a player's home
+    usage: /<command> [user] [homename]
+    permission: G_Dem__SMP.homes.delhome
+
+  listHomes:
+    description: List your or a players homes
+    usage: /<command> [user]
+    permission: G_Dem__SMP.homes.listHomes
+
+  listAllHomes:
+    description: List all homes of all players
+    usage: /<command>
+    permission: G_Dem__SMP.homes.listAllHomes
+    
+    
+  modifyTicks:
+    description: Modify someones tick amount
+    usage: /<command> <target> <add|subtract|set> <amount>
+  
+
+  sit:
+    description: Toggle sit mode
+    usage: /sit
+    permission: G_Dem__SMP.sit.sit
+  standAll:
+    description: Stand All Players
+    usage: /standAll
+    permission: G_Dem__SMP.sit.standAll
+
+
+
+permissions:
+  G_Dem__SMP.homes.sethome:
+    default: true
+  G_Dem__SMP.homes.sethome.other:
+    default: op
+
+  G_Dem__SMP.homes.home:
+    default: true
+  G_Dem__SMP.homes.home.other:
+    default: op
+
+  G_Dem__SMP.homes.delhome:
+    default: true
+  G_Dem__SMP.homes.delhome.other:
+    default: op
+
+  G_Dem__SMP.homes.listhomes:
+    default: true
+  G_Dem__SMP.homes.listhomes.other:
+    default: op
+
+  G_Dem__SMP.homes.listallhomes:
+    default: op
+
+
+  G_Dem__SMP.ticks.modify:
+    default: op
+  
+
+  G_Dem__SMP.sit.sit:
+    default: true
+  G_Dem__SMP.sit.standAll:
+    default: op
