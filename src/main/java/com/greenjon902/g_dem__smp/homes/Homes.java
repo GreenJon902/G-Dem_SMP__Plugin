@@ -7,11 +7,11 @@ import org.bukkit.Bukkit;
 
 import java.util.logging.Logger;
 
-public class Homes implements PluginComponent {
+public class Homes extends PluginComponent {
     public static final HomesComponentStorage storage = new HomesComponentStorage();
 
     @Override
-    public void setup(G_Dem__SMP mainClass) {
+    public void setup() {
         Logger logger = Bukkit.getLogger();
 
         logger.info("Loading storage...");
@@ -20,25 +20,25 @@ public class Homes implements PluginComponent {
 
         logger.info("Registering commands...");
         //noinspection ConstantConditions
-        mainClass.getCommand("setHome").setExecutor(new CommandSetHome());
+        G_Dem__SMP.getInstance().getCommand("setHome").setExecutor(new CommandSetHome());
         //noinspection ConstantConditions
-        mainClass.getCommand("home").setExecutor(new CommandHome());
+        G_Dem__SMP.getInstance().getCommand("home").setExecutor(new CommandHome());
         //noinspection ConstantConditions
-        mainClass.getCommand("delHome").setExecutor(new CommandDelHome());
+        G_Dem__SMP.getInstance().getCommand("delHome").setExecutor(new CommandDelHome());
         //noinspection ConstantConditions
-        mainClass.getCommand("listHomes").setExecutor(new CommandListHomes());
+        G_Dem__SMP.getInstance().getCommand("listHomes").setExecutor(new CommandListHomes());
         //noinspection ConstantConditions
-        mainClass.getCommand("listAllHomes").setExecutor(new CommandListAllHomes());
+        G_Dem__SMP.getInstance().getCommand("listAllHomes").setExecutor(new CommandListAllHomes());
         logger.info("Registered commands");
     }
 
     @Override
-    public void enable(G_Dem__SMP mainClass) {
+    public void enable() {
 
     }
 
     @Override
-    public void end(G_Dem__SMP mainClass) {
+    public void end() {
         Logger logger = Bukkit.getLogger();
 
         logger.info("Saving storage...");
