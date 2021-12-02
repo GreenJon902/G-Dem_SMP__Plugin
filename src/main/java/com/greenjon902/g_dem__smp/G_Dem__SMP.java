@@ -37,13 +37,13 @@ public final class G_Dem__SMP extends JavaPlugin {
         for (component_index=0; component_index < components.length; component_index++) {
             component = components[component_index];
             logger.info("Setting up " + component.getClass().toString());
-            component.setup(this);
+            component.setup();
         }
 
         for (component_index=0; component_index < components.length; component_index++) {
             component = components[component_index];
             logger.info("Enabling " + component.getClass().toString());
-            component.enable(this);
+            component.enable();
         }
 
         logger.info("Started the G-Dem SMP plugin...");
@@ -60,7 +60,7 @@ public final class G_Dem__SMP extends JavaPlugin {
         for (component_index=0; component_index < components.length; component_index++) {
             component = components[component_index];
             logger.info("Disabling " + component.getClass().toString());
-            component.end(this);
+            component.end();
         }
 
         logger.info("Ended the G-Dem SMP plugin...");
