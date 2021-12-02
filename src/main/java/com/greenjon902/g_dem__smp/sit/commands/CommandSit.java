@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp.sit.commands;
 
+import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.sit.Sit;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -26,7 +27,7 @@ public class CommandSit implements CommandExecutor {
         } else if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            Sit.API.toggle(player);
+            ((Sit) G_Dem__SMP.getComponent("Sit")).toggle(player);
         }
 
         return true;

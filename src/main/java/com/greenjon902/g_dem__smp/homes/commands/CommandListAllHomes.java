@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp.homes.commands;
 
+import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.homes.Homes;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -13,7 +14,7 @@ import java.util.UUID;
 public class CommandListAllHomes implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        HashMap<UUID, Set<String>> uniqueIdVersion = Homes.storage.getAllPlayerHomes();
+        HashMap<UUID, Set<String>> uniqueIdVersion = ((Homes) G_Dem__SMP.getComponent("Homes")).storage.getAllPlayerHomes();
         HashMap<String, Set<String>> nameVersion = new HashMap<>();
 
         for (UUID uniqueId : uniqueIdVersion.keySet()) {

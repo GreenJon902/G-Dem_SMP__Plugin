@@ -7,8 +7,8 @@ import org.bukkit.Bukkit;
 
 import java.util.logging.Logger;
 
-public class Homes extends PluginComponent {
-    public static final HomesComponentStorage storage = new HomesComponentStorage();
+public class Homes implements PluginComponent {
+    public final HomesComponentStorage storage = new HomesComponentStorage();
 
     @Override
     public void setup() {

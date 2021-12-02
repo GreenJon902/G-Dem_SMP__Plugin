@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp.homes.commands;
 
+import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.homes.Homes;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -37,7 +38,7 @@ public class CommandHome implements CommandExecutor {
 
             //noinspection ConstantConditions
             if (sender.hasPermission("G_Dem__SMP.homes.home.other") || Bukkit.getOfflinePlayer(uniqueId).getName().equals(sender.getName())) {
-                Location homeLocation = Homes.storage.getHomeLocation(name, uniqueId);
+                Location homeLocation = ((Homes) G_Dem__SMP.getComponent("Homes")).storage.getHomeLocation(name, uniqueId);
                 player.teleport(homeLocation);
                 //noinspection ConstantConditions
                 sender.sendMessage("Teleported to home called " + name + " at " + homeLocation.getBlock().getX() + " " +

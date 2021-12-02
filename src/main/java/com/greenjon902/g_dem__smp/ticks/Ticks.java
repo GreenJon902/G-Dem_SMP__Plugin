@@ -20,11 +20,11 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 
-public class Ticks extends PluginComponent {
-    private static File ticksFolder;
-    private static final HashMap<UUID, BufferedWriter> writers = new HashMap<>();
-    private static File tickOffsetsFile;
-    private static YamlConfiguration tickOffsets;
+public class Ticks implements PluginComponent {
+    private File ticksFolder;
+    private final HashMap<UUID, BufferedWriter> writers = new HashMap<>();
+    private File tickOffsetsFile;
+    private YamlConfiguration tickOffsets;
 
     @Override
     public void setup() {
@@ -77,7 +77,7 @@ public class Ticks extends PluginComponent {
         }
     }
 
-    public static void takeRecord(Player player) {
+    public void takeRecord(Player player) {
         try {
             if (!writers.containsKey(player.getUniqueId())) {
                 G_Dem__SMP.getInstance().getLogger().info("Creating new BufferedWriter for user " + player.getName() + " who's uuid is " + player.getUniqueId());
@@ -100,15 +100,15 @@ public class Ticks extends PluginComponent {
         }
     }
 
-    public static void set(Player player, int amount) {
+    public void set(Player player, int amount) {
         tickOffsets.set(String.valueOf(player.getUniqueId()), amount - player.getTicksLived());
     }
 
-    public static void add(Player player, int amount) {
+    public void add(Player player, int amount) {
         tickOffsets.set(String.valueOf(player.getUniqueId()), tickOffsets.getInt(String.valueOf(player.getUniqueId())) + amount);
     }
 
-    public static void subtract(Player player, int amount) {
+    public void subtract(Player player, int amount) {
         add(player, -amount);
     }
 }

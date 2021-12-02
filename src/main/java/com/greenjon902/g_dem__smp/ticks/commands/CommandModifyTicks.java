@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp.ticks.commands;
 
+import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.ticks.Ticks;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -16,15 +17,15 @@ public class CommandModifyTicks implements CommandExecutor {
         } else {
             switch (args[1]) {
                 case "set":
-                    Ticks.set((Player) Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
+                    ((Ticks) G_Dem__SMP.getComponent("Ticks")).set((Player) Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
 
                     break;
                 case "add":
-                    Ticks.add((Player) Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
+                    ((Ticks) G_Dem__SMP.getComponent("Ticks")).add((Player) Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
 
                     break;
                 case "subtract":
-                    Ticks.subtract((Player) Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
+                    ((Ticks) G_Dem__SMP.getComponent("Ticks")).subtract((Player) Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
 
                     break;
             }
