@@ -42,7 +42,6 @@ public final class G_Dem__SMP extends JavaPlugin {
         }
 
         logger.info("Started the G-Dem SMP plugin...");
-
     }
 
     @Override
