@@ -3,6 +3,7 @@ package com.greenjon902.g_dem__smp.chat;
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Chat implements PluginComponent {
@@ -22,9 +23,9 @@ public class Chat implements PluginComponent {
 
     }
 
-    public void sendMessage(String messageId, String componentId, Player player) {
+    public void sendMessage(String messageId, String componentId, CommandSender receiver) {
         // TODO: Load actual message and stuff
-        player.sendMessage("[" + componentId + "]  " + messageId);
+        receiver.sendMessage("[" + componentId + "]  " + messageId);
     }
 
     public void announceMessage(String messageId, String componentId) {
