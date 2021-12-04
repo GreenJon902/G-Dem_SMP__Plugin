@@ -14,6 +14,11 @@ public class ChatHandler implements Listener {
         bannedWords.add(word);
     }
 
+
+    public void unbanWord(String word) {
+        bannedWords.remove(word);
+    }
+
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
         String message = event.getMessage();
