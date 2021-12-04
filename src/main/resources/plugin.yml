@@ -85,5 +85,5 @@ permissions:
 
   G_Dem__SMP.chat.banword:
     default: op
-  G_Dem__SMP.chat.banword.bypass:
+  G_Dem__SMP.chat.bypassbannedwords:
     default: op

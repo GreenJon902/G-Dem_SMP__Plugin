@@ -8,10 +8,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Chat implements PluginComponent {
+    private final ChatHandler chatHandler = new ChatHandler();
 
     @Override
     public void setup() {
-        G_Dem__SMP.getInstance().getServer().getPluginManager().registerEvents(new ChatHandler(), G_Dem__SMP.getInstance());
+        G_Dem__SMP.getInstance().getServer().getPluginManager().registerEvents(chatHandler, G_Dem__SMP.getInstance());
         //noinspection ConstantConditions
         G_Dem__SMP.getInstance().getCommand("banWord").setExecutor(new CommandBanWord());
     }
@@ -36,5 +37,9 @@ public class Chat implements PluginComponent {
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             player.sendMessage("[" + componentId + "]  " + messageId);
         }
+    }
+
+    public void banWord(String word) {
+        chatHandler.banWord(word);
     }
 }
