@@ -3,20 +3,16 @@ package com.greenjon902.g_dem__smp.ticks;
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.ticks.commands.CommandModifyTicks;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.Statistic;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -91,7 +87,7 @@ public class Ticks implements PluginComponent {
             output.write(strDate);
 
             output.write(" = ");
-            output.write(String.valueOf(player.getTicksLived() +
+            output.write(String.valueOf(player.getStatistic(Statistic.PLAY_ONE_MINUTE) +
                     tickOffsets.getInt(String.valueOf(player.getUniqueId()), 0)));
             output.write("\n");
 
@@ -100,15 +96,46 @@ public class Ticks implements PluginComponent {
         }
     }
 
-    public void set(Player player, int amount) {
-        tickOffsets.set(String.valueOf(player.getUniqueId()), amount - player.getTicksLived());
+    public void set(OfflinePlayer player, int amount) {
+        tickOffsets.set(String.valueOf(player.getUniqueId()), amount - player.getStatistic(Statistic.PLAY_ONE_MINUTE));
     }
 
-    public void add(Player player, int amount) {
+    public void add(OfflinePlayer player, int amount) {
         tickOffsets.set(String.valueOf(player.getUniqueId()), tickOffsets.getInt(String.valueOf(player.getUniqueId())) + amount);
     }
 
-    public void subtract(Player player, int amount) {
+    public void subtract(OfflinePlayer player, int amount) {
         add(player, -amount);
+    }
+
+    public int get(OfflinePlayer player) {
+        if (player.isOnline()) {
+            //noinspection ConstantConditions
+            return player.getPlayer().getTicksLived() + tickOffsets.getInt(String.valueOf(player.getUniqueId()));
+        } else {
+            File[] files = ticksFolder.listFiles();
+
+            if (files != null) {
+                for (File file : files) {
+                    if (file.getName().replace(".txt", "").equals(player.getUniqueId().toString())) {
+                        try {
+
+                            Scanner tickRecords = new Scanner(new File(ticksFolder, player.getUniqueId() + ".txt")).useDelimiter("\n");
+                            String last = null;
+                            while (tickRecords.hasNext()) {
+                                last = tickRecords.next();
+                            }
+                            if (last != null) {
+                                return Integer.parseInt(last.split(" = ")[1]);
+                            }
+
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
     }
 }

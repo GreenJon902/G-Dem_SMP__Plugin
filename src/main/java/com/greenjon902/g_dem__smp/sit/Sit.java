@@ -105,15 +105,17 @@ public class Sit implements PluginComponent {
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Chairs r for weaklings"));
     }
 
-    public void toggle(Player player) {
+    public String toggle(Player player) {
         if (isSitting(player)) {
             stand(player);
+            return "standing";
         } else {
             sit(player);
+            return "sitting";
         }
     }
 
-    public void standAll() {
+    public int standAll() {
         Logger logger = Bukkit.getLogger();
         logger.info("Standing all");
 
@@ -126,5 +128,6 @@ public class Sit implements PluginComponent {
         }
 
         logger.info("Finished standing all");
+        return player_index;
     }
 }
