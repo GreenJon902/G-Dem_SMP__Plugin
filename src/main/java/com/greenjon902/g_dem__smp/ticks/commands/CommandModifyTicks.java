@@ -8,7 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
+import java.util.HashMap;
 
 public class CommandModifyTicks implements CommandExecutor {
     @Override
@@ -18,20 +18,39 @@ public class CommandModifyTicks implements CommandExecutor {
 
         } else {
             int before = ((Ticks) G_Dem__SMP.getComponent("Ticks")).get(Bukkit.getOfflinePlayer(args[0]));
-            System.out.println(before);
+
             switch (args[1]) {
                 case "set":
-                    System.out.println(Arrays.toString(args));
-                    ((Ticks) G_Dem__SMP.getComponent("Ticks")).get(Bukkit.getOfflinePlayer(args[0]));
                     ((Ticks) G_Dem__SMP.getComponent("Ticks")).set(Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
+
+                    ChatAPI.sendMessage("ticks.commands.modifyTicks.set", new HashMap<String, String>() {{
+                        put("userName", args[1]);
+                        put("amount", args[2]);
+                        put("before", String.valueOf(before));
+                        put("after", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(Bukkit.getOfflinePlayer(args[0]))));
+                    }}, "Ticks", sender);
 
                     break;
                 case "add":
                     ((Ticks) G_Dem__SMP.getComponent("Ticks")).add(Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
 
+                    ChatAPI.sendMessage("ticks.commands.modifyTicks.add", new HashMap<String, String>() {{
+                        put("userName", args[1]);
+                        put("amount", args[2]);
+                        put("before", String.valueOf(before));
+                        put("after", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(Bukkit.getOfflinePlayer(args[0]))));
+                    }}, "Ticks", sender);
+
                     break;
                 case "subtract":
                     ((Ticks) G_Dem__SMP.getComponent("Ticks")).subtract(Bukkit.getOfflinePlayer(args[0]), new Integer(args[2]));
+
+                    ChatAPI.sendMessage("ticks.commands.modifyTicks.subtract", new HashMap<String, String>() {{
+                        put("userName", args[1]);
+                        put("amount", args[2]);
+                        put("before", String.valueOf(before));
+                        put("after", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(Bukkit.getOfflinePlayer(args[0]))));
+                    }}, "Ticks", sender);
 
                     break;
             }
