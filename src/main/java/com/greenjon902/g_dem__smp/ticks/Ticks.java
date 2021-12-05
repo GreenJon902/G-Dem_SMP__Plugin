@@ -3,6 +3,7 @@ package com.greenjon902.g_dem__smp.ticks;
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.ticks.commands.CommandModifyTicks;
+import com.greenjon902.g_dem__smp.ticks.commands.CommandQueryTicks;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -50,6 +51,7 @@ public class Ticks implements PluginComponent {
 
         //noinspection ConstantConditions
         G_Dem__SMP.getInstance().getCommand("modifyTicks").setExecutor(new CommandModifyTicks());
+        G_Dem__SMP.getInstance().getCommand("queryTicks").setExecutor(new CommandQueryTicks());
     }
 
     @Override
