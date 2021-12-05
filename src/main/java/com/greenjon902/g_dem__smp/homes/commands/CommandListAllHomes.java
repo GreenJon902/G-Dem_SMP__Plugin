@@ -1,6 +1,7 @@
 package com.greenjon902.g_dem__smp.homes.commands;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
+import com.greenjon902.g_dem__smp.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.homes.Homes;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -21,7 +22,9 @@ public class CommandListAllHomes implements CommandExecutor {
             nameVersion.put(Bukkit.getOfflinePlayer(uniqueId).getName(), uniqueIdVersion.get(uniqueId));
         }
 
-        sender.sendMessage(nameVersion.toString());
+        ChatAPI.sendMessage("homes.commands.listAllHomes.list", new HashMap<String, String>() {{
+            put("list", nameVersion.toString());
+        }}, "Homes", sender);
 
         return true;
     }
