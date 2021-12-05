@@ -36,7 +36,9 @@ commands:
   modifyTicks:
     description: Modify someones tick amount
     usage: /<command> <target> <add|subtract|set> <amount>
-  
+  queryTicks:
+    description: Get someones tick amount(s)
+    usage: /<command> [amount=1]
 
   sit:
     description: Toggle sit mode
