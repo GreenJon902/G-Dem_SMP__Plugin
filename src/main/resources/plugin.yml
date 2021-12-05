@@ -44,6 +44,10 @@ commands:
     description: Unban a word from being used in chat
     usage: /<command> <word>
     permission: G_Dem__SMP.chat.unbanword
+  listBannedWords:
+    description: Unban a word from being used in chat
+    usage: /<command>
+    permission: G_Dem__SMP.chat.listBannedWords
 
   sit:
     description: Toggle sit mode
@@ -93,3 +97,5 @@ permissions:
     default: op
   G_Dem__SMP.chat.bypassbannedwords:
     default: op
+  G_Dem__SMP.chat.listbannedwords:
+    default: true

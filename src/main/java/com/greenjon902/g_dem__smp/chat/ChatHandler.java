@@ -32,4 +32,9 @@ public class ChatHandler implements Listener {
 
         event.setMessage(message);
     }
+
+    public ArrayList<String> getBannedWords() {
+        //noinspection unchecked
+        return (ArrayList<String>) bannedWords.clone();
+    }
 }
