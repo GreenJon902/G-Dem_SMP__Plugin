@@ -1,5 +1,6 @@
 package com.greenjon902.g_dem__smp;
 
+import com.greenjon902.g_dem__smp.chat.Chat;
 import com.greenjon902.g_dem__smp.homes.Homes;
 import com.greenjon902.g_dem__smp.sit.Sit;
 import com.greenjon902.g_dem__smp.ticks.Ticks;
@@ -14,6 +15,7 @@ public final class G_Dem__SMP extends JavaPlugin {
       put("Homes", new Homes());
       put("Ticks", new Ticks());
       put("Sit", new Sit());
+      put("Chat", new Chat());
     }};
 
     public static PluginComponent getComponent(String name) {

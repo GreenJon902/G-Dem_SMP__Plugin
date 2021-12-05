@@ -32,11 +32,22 @@ commands:
     usage: /<command>
     permission: G_Dem__SMP.homes.listAllHomes
     
-    
   modifyTicks:
     description: Modify someones tick amount
     usage: /<command> <target> <add|subtract|set> <amount>
-  
+
+  banWord:
+    description: Ban a word from being used in chat
+    usage: /<command> <word>
+    permission: G_Dem__SMP.chat.banword
+  unbanWord:
+    description: Unban a word from being used in chat
+    usage: /<command> <word>
+    permission: G_Dem__SMP.chat.unbanword
+  listBannedWords:
+    description: Unban a word from being used in chat
+    usage: /<command>
+    permission: G_Dem__SMP.chat.listBannedWords
 
   sit:
     description: Toggle sit mode
@@ -69,16 +80,22 @@ permissions:
     default: true
   G_Dem__SMP.homes.listhomes.other:
     default: op
-
   G_Dem__SMP.homes.listallhomes:
     default: op
 
-
   G_Dem__SMP.ticks.modify:
     default: op
-  
 
   G_Dem__SMP.sit.sit:
     default: true
   G_Dem__SMP.sit.standAll:
     default: op
+
+  G_Dem__SMP.chat.banword:
+    default: op
+  G_Dem__SMP.chat.unbanword:
+    default: op
+  G_Dem__SMP.chat.bypassbannedwords:
+    default: op
+  G_Dem__SMP.chat.listbannedwords:
+    default: true
