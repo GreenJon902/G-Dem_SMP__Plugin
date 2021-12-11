@@ -3,7 +3,6 @@ package com.greenjon902.g_dem__smp.homes;
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -111,20 +110,16 @@ public class HomesComponentStorage {
         }
     }
 
-    public void setPlayerHome(UUID uniqueId, String name, Location location, CommandSender commandSender) {
+    public void setPlayerHome(UUID uniqueId, String name, Location location) throws HomeAlreadyExistsException {
         if (!homes.containsKey(uniqueId)) {
             homes.put(uniqueId, new HashMap<>());
         }
         HashMap<String, Home> playerHomes = homes.get(uniqueId);
         if (playerHomes.containsKey(name)) {
-            commandSender.sendMessage("That home is already set!");
+            throw new HomeAlreadyExistsException();
         } else {
             System.out.println(name);
             playerHomes.put(name, Home.fromLocation(location));
-            //noinspection ConstantConditions
-            commandSender.sendMessage("Set home called " + name + " at " + location.getBlock().getX() + " " +
-                    location.getBlock().getY() + " " + location.getBlock().getZ() + " in " +
-                    location.getWorld().getName());
         }
     }
 
