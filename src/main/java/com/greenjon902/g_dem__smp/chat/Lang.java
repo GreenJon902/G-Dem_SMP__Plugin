@@ -39,19 +39,23 @@ public class Lang {
     }
 
     public String get(String messageId) {
-        return lang.get(messageId);
+        try {
+            return lang.get(messageId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "§4§l[ERROR]§r§c [Chat] An unexpected error occurred when trying to get chat message!";
+        }
     }
 
     public String format(String messageId, HashMap<String, String> with) {
         String message = get(messageId);
         String messageBefore = "";
-        System.out.println(message);
+
         while (!messageBefore.equals(message)) {
             messageBefore = message;
             message = _format(message, with);
         }
 
-        System.out.println(message);
         return message;
     }
 
@@ -67,7 +71,11 @@ public class Lang {
             if (current_no_brackets.startsWith("$")) {
                 message = message.replace(current, get(current_no_brackets.replace("$", "")));
             } else {
-                message = message.replace(current, with.get(current_no_brackets));
+                if (with.containsKey(current_no_brackets)) {
+                    message = message.replace(current, with.get(current_no_brackets));
+                } else {
+                    System.out.println("[Lang._Format]  Found \"" + current + "\" in message but nothing to format it with, ignoring!");
+                }
             }
         }
 
@@ -76,7 +84,6 @@ public class Lang {
         for (Map.Entry<String, String> entry : with.entrySet()) {
             message = message.replace("{" + entry.getKey() + "}", entry.getValue());
         }
-        System.out.println(message);
         return message;
     }
 }
@@ -93,6 +100,7 @@ class LangSection {
         for (String component : configurationSection.getKeys(false)) {
             System.out.println(component);
             if (component.equals("otherForms")) {
+                //noinspection ConstantConditions
                 for (String component2 : configurationSection.getConfigurationSection(component).getKeys(false)) {
                     if (configurationSection.isConfigurationSection(component)) {
                         //noinspection ConstantConditions
