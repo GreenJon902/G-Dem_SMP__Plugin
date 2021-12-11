@@ -8,6 +8,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Lang {
     @SuppressWarnings("FieldCanBeLocal")
@@ -34,10 +37,53 @@ public class Lang {
             e.printStackTrace();
         }
     }
+
+    public String get(String messageId) {
+        return lang.get(messageId);
+    }
+
+    public String format(String messageId, HashMap<String, String> with) {
+        String message = get(messageId);
+        String messageBefore = "";
+        System.out.println(message);
+        while (!messageBefore.equals(message)) {
+            messageBefore = message;
+            message = _format(message, with);
+        }
+
+        System.out.println(message);
+        return message;
+    }
+
+    private String _format(String message, HashMap<String, String> with) {
+        Pattern pattern = Pattern.compile("\\{[a-zA-Z0-9$.]+}");
+        Matcher matcher = pattern.matcher(message);
+
+        String current, current_no_brackets;
+        while (matcher.find()) {
+            current = matcher.group(0);
+            current_no_brackets = current.replace("{", "").replace("}", "");
+
+            if (current_no_brackets.startsWith("$")) {
+                message = message.replace(current, get(current_no_brackets.replace("$", "")));
+            } else {
+                message = message.replace(current, with.get(current_no_brackets));
+            }
+        }
+
+
+
+        for (Map.Entry<String, String> entry : with.entrySet()) {
+            message = message.replace("{" + entry.getKey() + "}", entry.getValue());
+        }
+        System.out.println(message);
+        return message;
+    }
 }
 
 class LangSection {
     private String standardOut;
+    @SuppressWarnings("FieldMayBeFinal")
     private HashMap<String, LangSection> children = new HashMap<>();
 
     public static LangSection build(ConfigurationSection configurationSection) {

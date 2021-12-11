@@ -1,6 +1,14 @@
-homes:
+componentText:
+        out: "[{componentId}]"
+        errors:
+            out: "§4[error] [componentId]"
+
+"homes":
     commands:
-        "setHomes":
+        "setHome":
             errors:
-                "homeAlreadyExists": "Home already exists"
-                "homeAlreadyExists".withName: "Home called {homeName} already exists"
+                "homeAlreadyExists":
+                    out: "{$componentText.errors}  Home already exists"
+                    otherForms:
+                        "withName":
+                            out: "{$componentText.errors}  Home called {homeName} already exists"

@@ -40,13 +40,14 @@ public class Chat implements PluginComponent {
     }
 
     public void sendMessage(String messageId, String componentId, CommandSender receiver) {
-        // TODO: Load actual message and stuff
-        receiver.sendMessage("[" + componentId + "]  " + messageId);
+        receiver.sendMessage(lang.format(messageId, new HashMap<String, String>() {{
+            put("componentId", componentId);
+        }}));
     }
 
     public void sendMessage(String messageId, HashMap<String, String> formatItems, String componentId, CommandSender receiver) {
-        // TODO: Load actual message and format and stuff
-        receiver.sendMessage("[" + componentId + "]  " + messageId + formatItems.toString());
+        formatItems.put("componentId", componentId);
+        receiver.sendMessage(lang.format(messageId, formatItems));
     }
 
     public void announceMessage(String messageId, String componentId) {
