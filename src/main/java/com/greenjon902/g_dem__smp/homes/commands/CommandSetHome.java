@@ -33,7 +33,7 @@ public class CommandSetHome implements CommandExecutor {
             if (args.length == 0) {
                 try {
                     ((Homes) G_Dem__SMP.getComponent("Homes")).storage.setPlayerHome(player.getUniqueId(), "home", location);
-                    ChatAPI.sendMessage("homes.commands.setHome.setHome", new HashMap<String, String>() {{
+                    ChatAPI.sendMessage("homes.commands.setHome", new HashMap<String, String>() {{
                         //noinspection ConstantConditions
                         put("world", location.getWorld().getName());
                         put("x", String.valueOf(location.getBlock().getX()));

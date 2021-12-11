@@ -43,7 +43,7 @@ public class Lang {
             return lang.get(messageId);
         } catch (Exception e) {
             e.printStackTrace();
-            return "§4§l[ERROR]§r§c [Chat] An unexpected error occurred when trying to get chat message!";
+            return "§4§l[ERROR]§r§c [Chat] An unexpected error occurred when trying to get chat message!\nmessageId=" + messageId;
         }
     }
 
