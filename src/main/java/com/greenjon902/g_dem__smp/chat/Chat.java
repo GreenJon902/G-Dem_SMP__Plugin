@@ -14,9 +14,12 @@ import java.util.HashMap;
 
 public class Chat implements PluginComponent {
     private final ChatHandler chatHandler = new ChatHandler();
+    private final Lang lang = new Lang();
 
     @Override
     public void setup() {
+        lang.setup();
+
         G_Dem__SMP.getInstance().getServer().getPluginManager().registerEvents(chatHandler, G_Dem__SMP.getInstance());
         //noinspection ConstantConditions
         G_Dem__SMP.getInstance().getCommand("banWord").setExecutor(new CommandBanWord());

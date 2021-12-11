@@ -1,0 +1,6 @@
+homes:
+    commands:
+        "setHomes":
+            errors:
+                "homeAlreadyExists": "Home already exists"
+                "homeAlreadyExists".withName: "Home called {homeName} already exists"
