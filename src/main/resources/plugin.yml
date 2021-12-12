@@ -31,10 +31,13 @@ commands:
     description: List all homes of all players
     usage: /<command>
     permission: G_Dem__SMP.homes.listAllHomes
-    
+
   modifyTicks:
     description: Modify someones tick amount
     usage: /<command> <target> <add|subtract|set> <amount>
+  queryTicks:
+    description: Get someones tick amount(s)
+    usage: /<command> [amount=1]
 
   banWord:
     description: Ban a word from being used in chat
