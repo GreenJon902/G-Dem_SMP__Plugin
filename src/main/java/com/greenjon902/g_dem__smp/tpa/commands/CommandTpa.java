@@ -26,11 +26,16 @@ public class CommandTpa implements CommandExecutor {
             if (to == null) {
                 System.out.println(1);
                 ChatAPI.sendMessage("tpa.commands.tpa.error.playerIsNotOnline", new HashMap<String, String>() {{
-                    put("userName", args[0]);
+                    put("toUserName", args[0]);
+                    put("fromUserName", from.getName());
                 }}, "Tpa", sender);
                 return true;
             }
 
+            ChatAPI.sendMessage("tpa.commands.tpa", new HashMap<String, String>() {{
+                put("toUserName", to.getName());
+                put("fromUserName", from.getName());
+            }}, "tpa", from);
             ((Tpa) G_Dem__SMP.getComponent("Tpa")).sendTpaRequest(from, to);
         }
         return true;

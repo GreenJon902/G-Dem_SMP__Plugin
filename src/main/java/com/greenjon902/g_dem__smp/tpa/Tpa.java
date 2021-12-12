@@ -43,6 +43,7 @@ public class Tpa implements PluginComponent {
         tpaRequests.add(tpaRequest);
 
         ChatAPI.sendMessage("tpa", new HashMap<String, String>() {{
+            put("toUserName", to.getName());
             put("fromUserName", from.getName());
         }}, "Tpa", to);
     }
