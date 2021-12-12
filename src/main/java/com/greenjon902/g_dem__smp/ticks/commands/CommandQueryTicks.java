@@ -1,6 +1,9 @@
 package com.greenjon902.g_dem__smp.ticks.commands;
 
+import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.chat.ChatAPI;
+import com.greenjon902.g_dem__smp.ticks.Ticks;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,8 +23,16 @@ public class CommandQueryTicks implements CommandExecutor {
 
             OfflinePlayer player = (OfflinePlayer) sender;
 
+            ChatAPI.sendMessage("ticks.commands.queryTicks", new HashMap<String, String>() {{
+                put("tickRecord", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(player)));
+            }}, "Ticks", sender);
+
+        } else if (args.length == 1) {
+            OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
+
             ChatAPI.sendMessage("ticks.commands.queryTicks.other", new HashMap<String, String>() {{
-                put("tickRecords", "123"); // TODO: Get actual tick amounts
+                put("userName", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(player)));
+                put("tickRecord", sender.getName());
             }}, "Ticks", sender);
 
         } else {
