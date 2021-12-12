@@ -1,0 +1,35 @@
+componentText:
+        out: "[{componentId}]"
+        errors:
+            out: "§4§l[ERROR]§r§c [{componentId}]"
+
+"homes":
+    commands:
+        "setHome":
+            out: "{$componentText}  Set home at {x}, {y}, {z} in world {world}"
+            otherForms:
+                "withName":
+                    out: "{$componentText}  Set home called {homeName} at {x}, {y}, {z} in world {world}"
+                "other":
+                    otherForms:
+                        "withName":
+                            out: "{$componentText}  Set home called {homeName} for {userName} at {x}, {y}, {z} in world {world}"
+            errors:
+                "homeAlreadyExists":
+                    out: "{$componentText.errors}  Home already exists!"
+                    otherForms:
+                        "withName":
+                            out: "{$componentText.errors}  Home called {homeName} already exists!"
+                    "other":
+                        otherForms:
+                            "withName":
+                                out: "{$componentText.errors}  {userName}'s home called {homeName} already exists!"
+        "home":
+            out: "{$componentText}  Teleported to home!"
+            otherForms:
+                "withName":
+                    out: "{$componentText}  Teleported to home called {homeName}"
+                "other":
+                    otherForms:
+                        "withName":
+                            out: "{$componentText}  Teleported to {userName}'s home called{homeName}"

@@ -47,17 +47,27 @@ public class CommandHome implements CommandExecutor {
 
                 //noinspection ConstantConditions
                 if (Bukkit.getOfflinePlayer(uniqueId).getName().equals(sender.getName())) {
-                    ChatAPI.sendMessage("homes.commands.home.teleportedHome", new HashMap<String, String>() {{
-                        put("homeName", finalName);
-                        //noinspection ConstantConditions
-                        put("world", homeLocation.getWorld().getName());
-                        put("x", String.valueOf(homeLocation.getBlock().getX()));
-                        put("y", String.valueOf(homeLocation.getBlock().getY()));
-                        put("z", String.valueOf(homeLocation.getBlock().getZ()));
-                    }}, "Homes", player);
+                    if (name.equals("home")) {
+                        ChatAPI.sendMessage("homes.commands.home", new HashMap<String, String>() {{
+                            //noinspection ConstantConditions
+                            put("world", homeLocation.getWorld().getName());
+                            put("x", String.valueOf(homeLocation.getBlock().getX()));
+                            put("y", String.valueOf(homeLocation.getBlock().getY()));
+                            put("z", String.valueOf(homeLocation.getBlock().getZ()));
+                        }}, "Homes", player);
+                    } else {
+                        ChatAPI.sendMessage("homes.commands.home.withName", new HashMap<String, String>() {{
+                            put("homeName", finalName);
+                            //noinspection ConstantConditions
+                            put("world", homeLocation.getWorld().getName());
+                            put("x", String.valueOf(homeLocation.getBlock().getX()));
+                            put("y", String.valueOf(homeLocation.getBlock().getY()));
+                            put("z", String.valueOf(homeLocation.getBlock().getZ()));
+                        }}, "Homes", player);
+                    }
 
                 } else {
-                    ChatAPI.sendMessage("homes.commands.home.teleportedHome.other", new HashMap<String, String>() {{
+                    ChatAPI.sendMessage("homes.commands.home.other.withName", new HashMap<String, String>() {{
                         //noinspection ConstantConditions
                         put("userName", Bukkit.getServer().getPlayer(finalUniqueId).getName());
                         put("homeName", finalName);

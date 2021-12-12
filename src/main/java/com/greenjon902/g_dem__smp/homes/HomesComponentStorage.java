@@ -66,16 +66,13 @@ public class HomesComponentStorage {
 
                 //noinspection ConstantConditions
                 for (File file2 : new File(playerHomesFolder, playerUid.toString()).listFiles()) {
-                    System.out.println(file + file.getName() + file.getName() + file2);
                     if (file2.isFile() & !file2.getName().equals(".DS_Store")) {
                         homes.get(playerUid).put(file2.getName().replace(".yml", ""),
                                 Home.fromYamlConfiguration(YamlConfiguration.loadConfiguration(file2)));
-                        System.out.println(file + file.getName() + file.getName() + file2);
                     }
                 }
             }
         }
-        System.out.println(homes);
     }
 
 
