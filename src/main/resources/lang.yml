@@ -33,3 +33,11 @@ componentText:
                     otherForms:
                         "withName":
                             out: "{$componentText}  Teleported to {userName}'s home called{homeName}"
+
+"ticks":
+    commands:
+        "queryTicks":
+            out: "{$componentText}  Your have {tickAmount} ticks"
+            otherForms:
+                "other":
+                    out: "{$componentText}  The user {userName} has {tickAmount} ticks"

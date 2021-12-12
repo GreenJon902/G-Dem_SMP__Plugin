@@ -24,15 +24,15 @@ public class CommandQueryTicks implements CommandExecutor {
             OfflinePlayer player = (OfflinePlayer) sender;
 
             ChatAPI.sendMessage("ticks.commands.queryTicks", new HashMap<String, String>() {{
-                put("tickRecord", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(player)));
+                put("tickAmount", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(player)));
             }}, "Ticks", sender);
 
         } else if (args.length == 1) {
             OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
 
             ChatAPI.sendMessage("ticks.commands.queryTicks.other", new HashMap<String, String>() {{
-                put("userName", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(player)));
-                put("tickRecord", sender.getName());
+                put("tickAmount", String.valueOf(((Ticks) G_Dem__SMP.getComponent("Ticks")).get(player)));
+                put("userName", player.getName());
             }}, "Ticks", sender);
 
         } else {
