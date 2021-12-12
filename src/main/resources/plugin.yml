@@ -61,6 +61,26 @@ commands:
     usage: /standAll
     permission: G_Dem__SMP.sit.standAll
 
+  tpa:
+    description: Ask to teleport to someone
+    usage: /<command> user
+    permission: G_Dem__SMP.tpa.tpa
+  tpaAccept:
+    description: Accept a tpa request, defaults to first recieved
+    usage: /<command> [user]
+    permission: G_Dem__SMP.tpa.accept
+  tpaDeny:
+    description: Deny a tpa request, defaults to first recieved
+    usage: /<command> [user]
+    permission: G_Dem__SMP.tpa.deny
+  tpaHere:
+    description: Ask to teleport somone to you
+    usage: /<command> user
+    permission: G_Dem__SMP.tpa.tpaHere
+  tpaMute:
+    description: Mute tpa requests for the current session, defaults to all
+    usage: /<command> [user]
+    permission: G_Dem__SMP.tpa.tpaMute
 
 
 permissions:
@@ -102,3 +122,16 @@ permissions:
     default: op
   G_Dem__SMP.chat.listbannedwords:
     default: true
+
+  G_Dem__SMP.tpa.tpa:
+    default: true
+  G_Dem__SMP.tpa.accept:
+    default: true
+  G_Dem__SMP.tpa.deny:
+    default: true
+  G_Dem__SMP.tpa.tpahere:
+    default: true
+  G_Dem__SMP.tpa.mute:
+    default: true
+  G_Dem__SMP.tpa.mute.bypass:
+    default: op
