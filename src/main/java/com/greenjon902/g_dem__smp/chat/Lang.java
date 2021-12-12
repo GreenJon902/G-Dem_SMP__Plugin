@@ -43,11 +43,13 @@ public class Lang {
             return lang.get(messageId);
         } catch (Exception e) {
             e.printStackTrace();
-            return "§4§l[ERROR]§r§c [Chat] An unexpected error occurred when trying to get chat message!\nmessageId=" + messageId;
+            return "§4§l[ERROR]§r§c [Chat] An unexpected error occurred when trying to get chat message!\nmessageId=" + messageId + "\nwith={with}";
         }
     }
 
     public String format(String messageId, HashMap<String, String> with) {
+        with.put("with", with.toString());
+
         String message = get(messageId);
         String messageBefore = "";
 
