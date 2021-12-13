@@ -21,22 +21,22 @@ public class CommandTpa implements CommandExecutor {
             ChatAPI.sendMessage("tpa.commands.tpa.errors.acceptsOneArgument", "Tpa", sender);
 
         } else {
-            Player commandSender = (Player) sender;
+            Player playerSender = (Player) sender;
             Player recipient = Bukkit.getPlayerExact(args[0]);
 
             if (recipient == null) {
                 ChatAPI.sendMessage("tpa.commands.tpa.errors.playerIsNotOnline", new HashMap<String, String>() {{
-                    put("toUserName", args[0]);
-                    put("fromUserName", commandSender.getName());
+                    put("recipient", args[0]);
+                    put("sender", playerSender.getName());
                 }}, "Tpa", sender);
                 return true;
             }
 
             ChatAPI.sendMessage("tpa.commands.tpa", new HashMap<String, String>() {{
-                put("toUserName", recipient.getName());
-                put("fromUserName", commandSender.getName());
-            }}, "tpa", commandSender);
-            ((Tpa) G_Dem__SMP.getComponent("Tpa")).sendTpaRequest(commandSender, recipient);
+                put("recipient", recipient.getName());
+                put("sender", playerSender.getName());
+            }}, "tpa", playerSender);
+            ((Tpa) G_Dem__SMP.getComponent("Tpa")).sendTpaRequest(playerSender, recipient);
         }
         return true;
     }

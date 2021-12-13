@@ -22,48 +22,48 @@ public class CommandTpaAccept implements CommandExecutor {
             ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.acceptsMaximumOneArgument", "Tpa", sender);
 
         } else if (args.length == 1) {
-            Player commandSender = (Player) sender;
+            Player playerSender = (Player) sender;
             Player supposedTpaRequestSender = Bukkit.getPlayerExact(args[0]);
 
             if (supposedTpaRequestSender == null) {
                 ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.playerIsNotOnline", new HashMap<String, String>() {{
-                    put("toUserName", args[0]);
-                    put("fromUserName", commandSender.getName());
+                    put("recipient", args[0]);
+                    put("sender", playerSender.getName());
                 }}, "Tpa", sender);
                 return true;
             }
 
             try {
-                ((Tpa) G_Dem__SMP.getComponent("Tpa")).tpaAccept(commandSender, supposedTpaRequestSender);
+                ((Tpa) G_Dem__SMP.getComponent("Tpa")).tpaAccept(playerSender, supposedTpaRequestSender);
                 ChatAPI.sendMessage("tpa.commands.tpaAccept", new HashMap<String, String>() {{
-                    put("supposedTpaRequestSenderUserName", supposedTpaRequestSender.getName());
-                    put("userName", commandSender.getName());
-                }}, "tpa", commandSender);
+                    put("recipient", supposedTpaRequestSender.getName());
+                    put("sender", playerSender.getName());
+                }}, "tpa", playerSender);
             } catch (NoTpaRequestException e) {
                 ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.noTpaRequest.withName", new HashMap<String, String>() {{
-                    put("supposedTpaRequestSenderUserName", supposedTpaRequestSender.getName());
-                    put("userName", commandSender.getName());
-                }}, "tpa", commandSender);
+                    put("recipient", supposedTpaRequestSender.getName());
+                    put("sender", playerSender.getName());
+                }}, "tpa", playerSender);
             }
 
 
         } else {
-            Player commandSender = (Player) sender;
-            Player supposedTpaRequestSender = ((Tpa) G_Dem__SMP.getComponent("Tpa")).getLastPlayerWhoSentATpaRequestWhereRecipientIs(commandSender);
+            Player playerSender = (Player) sender;
+            Player supposedTpaRequestSender = ((Tpa) G_Dem__SMP.getComponent("Tpa")).getLastPlayerWhoSentATpaRequestWhereRecipientIs(playerSender);
 
             if (supposedTpaRequestSender == null) {
                 ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.noTpaRequest", new HashMap<String, String>() {{
-                    put("userName", commandSender.getName());
-                }}, "tpa", commandSender);
+                    put("sender", playerSender.getName());
+                }}, "tpa", playerSender);
                 return true;
             }
 
             try {
-                ((Tpa) G_Dem__SMP.getComponent("Tpa")).tpaAccept(commandSender, supposedTpaRequestSender);
+                ((Tpa) G_Dem__SMP.getComponent("Tpa")).tpaAccept(playerSender, supposedTpaRequestSender);
                 ChatAPI.sendMessage("tpa.commands.tpaAccept", new HashMap<String, String>() {{
-                    put("supposedTpaRequestSenderUserName", supposedTpaRequestSender.getName());
-                    put("userName", commandSender.getName());
-                }}, "tpa", commandSender);
+                    put("recipient", supposedTpaRequestSender.getName());
+                    put("sender", playerSender.getName());
+                }}, "tpa", playerSender);
             } catch (NoTpaRequestException e) { // Should be impossible but just to please java / intelliJ
                 e.printStackTrace();
             }

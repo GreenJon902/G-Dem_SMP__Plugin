@@ -40,49 +40,49 @@ public class Tpa implements PluginComponent {
 
     }
 
-    public void sendTpaRequest(Player commandSender, Player recipient) {
-        if (!tpaRequests.containsKey(commandSender)) {
-            tpaRequests.put(commandSender, new ArrayList<>());
+    public void sendTpaRequest(Player sender, Player recipient) {
+        if (!tpaRequests.containsKey(sender)) {
+            tpaRequests.put(sender, new ArrayList<>());
         }
 
-        if (!tpaRequests.get(commandSender).contains(recipient)) {
-            tpaRequests.get(commandSender).add(recipient);
-            lastTpaRequestToPlayer.put(recipient, commandSender);
+        if (!tpaRequests.get(sender).contains(recipient)) {
+            tpaRequests.get(sender).add(recipient);
+            lastTpaRequestToPlayer.put(recipient, sender);
 
             ChatAPI.sendMessage("tpa", new HashMap<String, String>() {{
                 put("toUserName", recipient.getName());
-                put("fromUserName", commandSender.getName());
+                put("fromUserName", sender.getName());
             }}, "Tpa", recipient);
         }
         System.out.println(tpaRequests);
     }
 
-    public void sendTpaHereRequest(Player commandSender, Player recipient) {
-        if (!tpaHereRequests.containsKey(commandSender)) {
-            tpaHereRequests.put(commandSender, new ArrayList<>());
+    public void sendTpaHereRequest(Player sender, Player recipient) {
+        if (!tpaHereRequests.containsKey(sender)) {
+            tpaHereRequests.put(sender, new ArrayList<>());
         }
 
-        if (!tpaHereRequests.get(commandSender).contains(recipient)) {
-            tpaHereRequests.get(commandSender).add(recipient);
-            lastTpaRequestToPlayer.put(recipient, commandSender);
+        if (!tpaHereRequests.get(sender).contains(recipient)) {
+            tpaHereRequests.get(sender).add(recipient);
+            lastTpaRequestToPlayer.put(recipient, sender);
 
             ChatAPI.sendMessage("tpa.here", new HashMap<String, String>() {{
-                put("toUserName", recipient.getName());
-                put("fromUserName", commandSender.getName());
+                put("sender", recipient.getName());
+                put("recipient", sender.getName());
             }}, "Tpa", recipient);
         }
         System.out.println(tpaHereRequests);
     }
 
-    public void tpaAccept(Player commandSender, Player supposedTpaRequestSender) throws NoTpaRequestException {
+    public void tpaAccept(Player sender, Player supposedTpaRequestSender) throws NoTpaRequestException {
         if (tpaRequests.containsKey(supposedTpaRequestSender)) {
-            if (tpaRequests.get(supposedTpaRequestSender).contains(commandSender)) {
+            if (tpaRequests.get(supposedTpaRequestSender).contains(sender)) {
                 return;
             }
         }
 
         if (tpaHereRequests.containsKey(supposedTpaRequestSender)) {
-            if (tpaHereRequests.get(supposedTpaRequestSender).contains(commandSender)) {
+            if (tpaHereRequests.get(supposedTpaRequestSender).contains(sender)) {
                 return;
             }
         }
