@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class Tpa implements PluginComponent {
     private final HashMap<Player, ArrayList<Player>> tpaRequests = new HashMap<>();
     private final HashMap<Player, ArrayList<Player>> tpaHereRequests = new HashMap<>();
+    private final HashMap<Player, Player> lastTpaRequestToPlayer = new HashMap<>(); // can be both tpa and tpaHere
 
     @Override
     public void setup() {
@@ -46,6 +47,7 @@ public class Tpa implements PluginComponent {
 
         if (!tpaRequests.get(commandSender).contains(recipient)) {
             tpaRequests.get(commandSender).add(recipient);
+            lastTpaRequestToPlayer.put(recipient, commandSender);
 
             ChatAPI.sendMessage("tpa", new HashMap<String, String>() {{
                 put("toUserName", recipient.getName());
@@ -62,6 +64,7 @@ public class Tpa implements PluginComponent {
 
         if (!tpaHereRequests.get(commandSender).contains(recipient)) {
             tpaHereRequests.get(commandSender).add(recipient);
+            lastTpaRequestToPlayer.put(recipient, commandSender);
 
             ChatAPI.sendMessage("tpa.here", new HashMap<String, String>() {{
                 put("toUserName", recipient.getName());
@@ -69,5 +72,28 @@ public class Tpa implements PluginComponent {
             }}, "Tpa", recipient);
         }
         System.out.println(tpaHereRequests);
+    }
+
+    public void tpaAccept(Player commandSender, Player supposedTpaRequestSender) throws NoTpaRequestException {
+        if (tpaRequests.containsKey(supposedTpaRequestSender)) {
+            if (tpaRequests.get(supposedTpaRequestSender).contains(commandSender)) {
+                return;
+            }
+        }
+
+        if (tpaHereRequests.containsKey(supposedTpaRequestSender)) {
+            if (tpaHereRequests.get(supposedTpaRequestSender).contains(commandSender)) {
+                return;
+            }
+        }
+
+        throw new NoTpaRequestException();
+    }
+
+    public Player getLastPlayerWhoSentATpaRequestWhereRecipientIs(Player recipient) {
+        if (lastTpaRequestToPlayer.containsKey(recipient)) {
+            return lastTpaRequestToPlayer.get(recipient);
+        }
+        return null;
     }
 }
