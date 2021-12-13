@@ -45,6 +45,14 @@ public class Tpa implements PluginComponent {
             put("toUserName", recipient.getName());
             put("fromUserName", commandSender.getName());
         }}, "Tpa", recipient);
-        System.out.println(tpaRequests.toString());
+    }
+
+    public void sendTpaHereRequest(Player commandSender, Player recipient) {
+        tpaHereRequests.put(commandSender, recipient);
+
+        ChatAPI.sendMessage("tpa.here", new HashMap<String, String>() {{
+            put("toUserName", recipient.getName());
+            put("fromUserName", commandSender.getName());
+        }}, "Tpa", recipient);
     }
 }
