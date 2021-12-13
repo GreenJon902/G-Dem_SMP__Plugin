@@ -75,17 +75,29 @@ public class Tpa implements PluginComponent {
     }
 
     public void tpaAccept(Player sender, Player supposedTpaRequestSender) throws NoTpaRequestException {
-        if (tpaRequests.containsKey(supposedTpaRequestSender)) {
+        System.out.println(tpaHereRequests);
+        if (tpaRequests.containsKey(supposedTpaRequestSender)) { // original sender -> original recipient
             if (tpaRequests.get(supposedTpaRequestSender).contains(sender)) {
+
+                supposedTpaRequestSender.teleport(sender.getLocation());
+                tpaRequests.get(supposedTpaRequestSender).remove(sender);
+                lastTpaRequestToPlayer.remove(sender);
+                System.out.println(tpaHereRequests);
                 return;
             }
         }
 
-        if (tpaHereRequests.containsKey(supposedTpaRequestSender)) {
+        if (tpaHereRequests.containsKey(supposedTpaRequestSender)) {// original recipient -> original sender
             if (tpaHereRequests.get(supposedTpaRequestSender).contains(sender)) {
+
+                sender.teleport(supposedTpaRequestSender.getLocation());
+                tpaHereRequests.get(supposedTpaRequestSender).remove(sender);
+                lastTpaRequestToPlayer.remove(sender);
+                System.out.println(tpaHereRequests);
                 return;
             }
         }
+        System.out.println(tpaHereRequests);
 
         throw new NoTpaRequestException();
     }
