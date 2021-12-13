@@ -19,24 +19,24 @@ public class CommandTpa implements CommandExecutor {
             ChatAPI.sendMessage("tpa.commands.tpa.errors.consoleCannotSendTpaRequests", "Tpa", sender);
         } else if (args.length != 1) {
             ChatAPI.sendMessage("tpa.commands.tpa.error.acceptsOneArgument", "Tpa", sender);
+
         } else {
-            Player from = (Player) sender;
-            Player to = Bukkit.getPlayerExact(args[0]);
-            System.out.println(to);
-            if (to == null) {
-                System.out.println(1);
+            Player commandSender = (Player) sender;
+            Player recipient = Bukkit.getPlayerExact(args[0]);
+
+            if (recipient == null) {
                 ChatAPI.sendMessage("tpa.commands.tpa.error.playerIsNotOnline", new HashMap<String, String>() {{
                     put("toUserName", args[0]);
-                    put("fromUserName", from.getName());
+                    put("fromUserName", commandSender.getName());
                 }}, "Tpa", sender);
                 return true;
             }
 
             ChatAPI.sendMessage("tpa.commands.tpa", new HashMap<String, String>() {{
-                put("toUserName", to.getName());
-                put("fromUserName", from.getName());
-            }}, "tpa", from);
-            ((Tpa) G_Dem__SMP.getComponent("Tpa")).sendTpaRequest(from, to);
+                put("toUserName", recipient.getName());
+                put("fromUserName", commandSender.getName());
+            }}, "tpa", commandSender);
+            ((Tpa) G_Dem__SMP.getComponent("Tpa")).sendTpaRequest(commandSender, recipient);
         }
         return true;
     }

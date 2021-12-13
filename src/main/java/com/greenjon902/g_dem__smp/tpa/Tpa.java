@@ -6,11 +6,11 @@ import com.greenjon902.g_dem__smp.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.tpa.commands.*;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Tpa implements PluginComponent {
-    public ArrayList<TpaRequest> tpaRequests = new ArrayList<>();
+    private final HashMap<Player, Player> tpaRequests = new HashMap<>();
+    private final HashMap<Player, Player> tpaHereRequests = new HashMap<>();
 
     @Override
     public void setup() {
@@ -38,23 +38,13 @@ public class Tpa implements PluginComponent {
 
     }
 
-    public void sendTpaRequest(Player from, Player to) {
-        TpaRequest tpaRequest = new TpaRequest(from, to);
-        tpaRequests.add(tpaRequest);
+    public void sendTpaRequest(Player commandSender, Player recipient) {
+        tpaRequests.put(commandSender, recipient);
 
         ChatAPI.sendMessage("tpa", new HashMap<String, String>() {{
-            put("toUserName", to.getName());
-            put("fromUserName", from.getName());
-        }}, "Tpa", to);
-    }
-}
-
-class TpaRequest {
-    public Player from;
-    public Player to;
-
-    public TpaRequest(Player from, Player to) {
-        this.from = from;
-        this.to = to;
+            put("toUserName", recipient.getName());
+            put("fromUserName", commandSender.getName());
+        }}, "Tpa", recipient);
+        System.out.println(tpaRequests.toString());
     }
 }
