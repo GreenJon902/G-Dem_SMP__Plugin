@@ -6,11 +6,12 @@ import com.greenjon902.g_dem__smp.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.tpa.commands.*;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Tpa implements PluginComponent {
-    private final HashMap<Player, Player> tpaRequests = new HashMap<>();
-    private final HashMap<Player, Player> tpaHereRequests = new HashMap<>();
+    private final HashMap<Player, ArrayList<Player>> tpaRequests = new HashMap<>();
+    private final HashMap<Player, ArrayList<Player>> tpaHereRequests = new HashMap<>();
 
     @Override
     public void setup() {
@@ -39,20 +40,34 @@ public class Tpa implements PluginComponent {
     }
 
     public void sendTpaRequest(Player commandSender, Player recipient) {
-        tpaRequests.put(commandSender, recipient);
+        if (!tpaRequests.containsKey(commandSender)) {
+            tpaRequests.put(commandSender, new ArrayList<>());
+        }
 
-        ChatAPI.sendMessage("tpa", new HashMap<String, String>() {{
-            put("toUserName", recipient.getName());
-            put("fromUserName", commandSender.getName());
-        }}, "Tpa", recipient);
+        if (!tpaRequests.get(commandSender).contains(recipient)) {
+            tpaRequests.get(commandSender).add(recipient);
+
+            ChatAPI.sendMessage("tpa", new HashMap<String, String>() {{
+                put("toUserName", recipient.getName());
+                put("fromUserName", commandSender.getName());
+            }}, "Tpa", recipient);
+        }
+        System.out.println(tpaRequests);
     }
 
     public void sendTpaHereRequest(Player commandSender, Player recipient) {
-        tpaHereRequests.put(commandSender, recipient);
+        if (!tpaHereRequests.containsKey(commandSender)) {
+            tpaHereRequests.put(commandSender, new ArrayList<>());
+        }
 
-        ChatAPI.sendMessage("tpa.here", new HashMap<String, String>() {{
-            put("toUserName", recipient.getName());
-            put("fromUserName", commandSender.getName());
-        }}, "Tpa", recipient);
+        if (!tpaHereRequests.get(commandSender).contains(recipient)) {
+            tpaHereRequests.get(commandSender).add(recipient);
+
+            ChatAPI.sendMessage("tpa.here", new HashMap<String, String>() {{
+                put("toUserName", recipient.getName());
+                put("fromUserName", commandSender.getName());
+            }}, "Tpa", recipient);
+        }
+        System.out.println(tpaHereRequests);
     }
 }
