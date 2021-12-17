@@ -69,10 +69,12 @@ commands:
     description: Accept a tpa request, defaults to first recieved
     usage: /<command> [user]
     permission: G_Dem__SMP.tpa.accept
+    aliases: [tpAccept]
   tpaDeny:
     description: Deny a tpa request, defaults to first recieved
     usage: /<command> [user]
     permission: G_Dem__SMP.tpa.deny
+    aliases: [tpDeny]
   tpaHere:
     description: Ask to teleport somone to you
     usage: /<command> user
