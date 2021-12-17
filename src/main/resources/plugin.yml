@@ -65,25 +65,25 @@ commands:
     description: Ask to teleport to someone
     usage: /<command> user
     permission: G_Dem__SMP.tpa.tpa
-  tpaAccept:
+  tpaaccept:
     description: Accept a tpa request, defaults to first recieved
     usage: /<command> [user]
     permission: G_Dem__SMP.tpa.accept
-    aliases: [tpAccept]
-  tpaDeny:
+    aliases: [tpaccept]
+  tpadeny:
     description: Deny a tpa request, defaults to first recieved
     usage: /<command> [user]
     permission: G_Dem__SMP.tpa.deny
-    aliases: [tpDeny]
-  tpaHere:
+    aliases: [tpdeny]
+  tpahere:
     description: Ask to teleport somone to you
     usage: /<command> user
     permission: G_Dem__SMP.tpa.tpaHere
-  tpaHereAll:
+  tpahereall:
     description: Ask everyone to teleport to you
     usage: /<command>
     permission: G_Dem__SMP.tpa.tpahereall
-  tpaMute:
+  tpamute:
     description: Mute tpa requests for the current session, defaults to all
     usage: /<command> [user]
     permission: G_Dem__SMP.tpa.tpaMute
