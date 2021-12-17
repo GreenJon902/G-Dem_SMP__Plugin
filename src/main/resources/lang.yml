@@ -32,7 +32,7 @@ componentText:
                 "other":
                     otherForms:
                         "withName":
-                            out: "{$componentText}  Teleported to {userName}'s home called{homeName}"
+                            out: "{$componentText}  Teleported to {userName}'s home called {homeName}"
 
 "ticks":
     commands:
@@ -41,3 +41,16 @@ componentText:
             otherForms:
                 "other":
                     out: "{$componentText}  The user {userName} has {tickAmount} ticks"
+
+"tpa":
+    commands:
+        "tpa":
+            out: "{$componentText}  You sent a tpa request to {recipient}"
+            errors:
+                "consoleCannotSendTpaRequests":
+                    out: "{$componentText.errors}  Console cannot send tpa requests"
+                "acceptsOneArgument":
+                    out: "{$componentText.errors}  /tpa only accepts one arguement"
+                "playerIsNotOnline":
+                    out: "{$componentText.errors}  Player {recipient} is not online"
+
