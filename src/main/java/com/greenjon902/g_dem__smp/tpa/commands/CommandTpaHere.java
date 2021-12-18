@@ -35,7 +35,7 @@ public class CommandTpaHere implements CommandExecutor {
             ChatAPI.sendMessage("tpa.commands.tpaHere", new HashMap<String, String>() {{
                 put("recipient", recipient.getName());
                 put("sender", playerSender.getName());
-            }}, "tpa", sender);
+            }}, "Tpa", sender);
             ((Tpa) G_Dem__SMP.getComponent("Tpa")).sendTpaHereRequest(playerSender, recipient);
         }
         return true;

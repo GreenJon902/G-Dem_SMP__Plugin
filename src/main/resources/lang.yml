@@ -43,6 +43,7 @@ componentText:
                     out: "{$componentText}  The user {userName} has {tickAmount} ticks"
 
 "tpa":
+    out: "{$componentText}  You have received a tpa request from {sender}"
     commands:
         "tpa":
             out: "{$componentText}  You sent a tpa request to {recipient}"
@@ -50,7 +51,18 @@ componentText:
                 "consoleCannotSendTpaRequests":
                     out: "{$componentText.errors}  Console cannot send tpa requests"
                 "acceptsOneArgument":
-                    out: "{$componentText.errors}  /tpa only accepts one arguement"
+                    out: "{$componentText.errors}  /tpa only accepts one argument"
                 "playerIsNotOnline":
                     out: "{$componentText.errors}  Player {recipient} is not online"
-
+        "tpaHere":
+            out: "{$componentText}  You sent a tpa here request to {recipient}"
+            errors:
+                "consoleCannotSendTpaRequests":
+                    out: "{$componentText.errors}  Console cannot send tpa here  requests"
+                "acceptsOneArgument":
+                    out: "{$componentText.errors}  /tpaHere only accepts one argument"
+                "playerIsNotOnline":
+                    out: "{$componentText.errors}  Player {recipient} is not online"
+    otherForms:
+        "here":
+             out: "{$componentText}  You have received a tpa here request from {sender}"

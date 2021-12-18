@@ -46,6 +46,7 @@ public class Tpa implements PluginComponent {
         }
 
         if (!tpaRequests.get(sender).contains(recipient)) {
+            System.out.println("1" + recipient);
             tpaRequests.get(sender).add(recipient);
             lastTpaRequestToPlayer.put(recipient, sender);
 
