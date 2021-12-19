@@ -140,4 +140,22 @@ public class Ticks implements PluginComponent {
             return 0;
         }
     }
+
+    public UUID[] getAllPlayersWithTickRecords() {
+        File[] files = ticksFolder.listFiles();
+        if (files == null) {
+            return new UUID[]{};
+        }
+
+        ArrayList<UUID> players = new ArrayList<>();
+
+        for (File file : files) {
+            try {
+                players.add(UUID.fromString(file.getName().replace(".txt", ""))) ;
+            } catch (java.lang.IllegalArgumentException ignored) {
+
+            }
+        }
+        return players.toArray(new UUID[0]);
+    }
 }
