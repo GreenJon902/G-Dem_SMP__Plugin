@@ -10,10 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabExecutor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class CommandQueryTicks implements TabExecutor {
     @Override
@@ -50,9 +47,13 @@ public class CommandQueryTicks implements TabExecutor {
         if (args.length == 1) {
             ArrayList<String> players = new ArrayList<>();
             for (UUID uniqueId : ((Ticks) G_Dem__SMP.getComponent("Ticks")).getAllPlayersWithTickRecords()) {
-                players.add(Bukkit.getOfflinePlayer(uniqueId).getName());
+                String name = Bukkit.getOfflinePlayer(uniqueId).getName();
+                if (name != null) {
+                    if (name.toLowerCase(Locale.ROOT).startsWith(args[0].toLowerCase(Locale.ROOT))) {
+                        players.add(name);
+                    }
+                }
             }
-            System.out.println(players);
             return players;
         }
         return new ArrayList<>();

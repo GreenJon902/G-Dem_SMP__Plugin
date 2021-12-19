@@ -63,9 +63,13 @@ public class CommandModifyTicks implements TabExecutor {
         if (args.length == 1) {
             ArrayList<String> players = new ArrayList<>();
             for (UUID uniqueId : ((Ticks) G_Dem__SMP.getComponent("Ticks")).getAllPlayersWithTickRecords()) {
-                players.add(Bukkit.getOfflinePlayer(uniqueId).getName());
+                String name = Bukkit.getOfflinePlayer(uniqueId).getName();
+                if (name != null) {
+                    if (name.toLowerCase(Locale.ROOT).startsWith(args[0].toLowerCase(Locale.ROOT))) {
+                        players.add(name);
+                    }
+                }
             }
-            System.out.println(players);
             return players;
         }
          else if (args.length == 2) {
