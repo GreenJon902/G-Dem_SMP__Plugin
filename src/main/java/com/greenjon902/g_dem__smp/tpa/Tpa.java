@@ -26,8 +26,6 @@ public class Tpa implements PluginComponent {
         G_Dem__SMP.getInstance().getCommand("tpaHere").setExecutor(new CommandTpaHere());
         //noinspection ConstantConditions
         G_Dem__SMP.getInstance().getCommand("tpaHereAll").setExecutor(new CommandTpaHereAll());
-        //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("tpaMute").setExecutor(new CommandTpaMute());
     }
 
     @Override

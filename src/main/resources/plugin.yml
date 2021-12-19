@@ -83,10 +83,6 @@ commands:
     description: Ask everyone to teleport to you
     usage: /<command>
     permission: G_Dem__SMP.tpa.tpahereall
-  tpamute:
-    description: Mute tpa requests for the current session, defaults to all
-    usage: /<command> [user]
-    permission: G_Dem__SMP.tpa.tpaMute
 
 
 permissions:
@@ -138,8 +134,4 @@ permissions:
   G_Dem__SMP.tpa.tpahere:
     default: true
   G_Dem__SMP.tpa.tpahereall:
-    default: op
-  G_Dem__SMP.tpa.mute:
-    default: true
-  G_Dem__SMP.tpa.mute.bypass:
     default: op
