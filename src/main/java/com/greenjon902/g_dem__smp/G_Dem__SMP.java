@@ -4,6 +4,7 @@ import com.greenjon902.g_dem__smp.chat.Chat;
 import com.greenjon902.g_dem__smp.homes.Homes;
 import com.greenjon902.g_dem__smp.sit.Sit;
 import com.greenjon902.g_dem__smp.ticks.Ticks;
+import com.greenjon902.g_dem__smp.tpa.Tpa;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public final class G_Dem__SMP extends JavaPlugin {
       put("Ticks", new Ticks());
       put("Sit", new Sit());
       put("Chat", new Chat());
+      put("Tpa", new Tpa());
     }};
 
     public static PluginComponent getComponent(String name) {
