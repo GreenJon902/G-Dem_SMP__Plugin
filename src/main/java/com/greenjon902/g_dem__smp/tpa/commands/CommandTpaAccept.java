@@ -17,9 +17,9 @@ public class CommandTpaAccept implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof ConsoleCommandSender) {
-            ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.consoleCannotSendTpaRequests", "Tpa", sender);
+            ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.consoleCannotAcceptTpaRequests", "Tpa", sender);
         } else if (!(args.length < 2)) {
-            ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.acceptsMaximumOneArgument", "Tpa", sender);
+            ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.acceptsOneArgument", "Tpa", sender);
 
         } else if (args.length == 1) {
             Player playerSender = (Player) sender;
@@ -27,8 +27,8 @@ public class CommandTpaAccept implements CommandExecutor {
 
             if (supposedTpaRequestSender == null) {
                 ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.playerIsNotOnline", new HashMap<String, String>() {{
-                    put("recipient", args[0]);
-                    put("sender", playerSender.getName());
+                    put("sender", args[0]);
+                    put("recipient", playerSender.getName());
                 }}, "Tpa", sender);
                 return true;
             }
@@ -36,14 +36,14 @@ public class CommandTpaAccept implements CommandExecutor {
             try {
                 ((Tpa) G_Dem__SMP.getComponent("Tpa")).tpaAccept(playerSender, supposedTpaRequestSender);
                 ChatAPI.sendMessage("tpa.commands.tpaAccept", new HashMap<String, String>() {{
-                    put("recipient", supposedTpaRequestSender.getName());
-                    put("sender", playerSender.getName());
+                    put("sender", supposedTpaRequestSender.getName());
+                    put("recipient", playerSender.getName());
                 }}, "tpa", playerSender);
             } catch (NoTpaRequestException e) {
                 ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.noTpaRequest.withName", new HashMap<String, String>() {{
-                    put("recipient", supposedTpaRequestSender.getName());
-                    put("sender", playerSender.getName());
-                }}, "tpa", playerSender);
+                    put("sender", supposedTpaRequestSender.getName());
+                    put("recipient", playerSender.getName());
+                }}, "Tpa", playerSender);
             }
 
 
@@ -54,16 +54,16 @@ public class CommandTpaAccept implements CommandExecutor {
             if (supposedTpaRequestSender == null) {
                 ChatAPI.sendMessage("tpa.commands.tpaAccept.errors.noTpaRequest", new HashMap<String, String>() {{
                     put("sender", playerSender.getName());
-                }}, "tpa", playerSender);
+                }}, "Tpa", playerSender);
                 return true;
             }
 
             try {
                 ((Tpa) G_Dem__SMP.getComponent("Tpa")).tpaAccept(playerSender, supposedTpaRequestSender);
                 ChatAPI.sendMessage("tpa.commands.tpaAccept", new HashMap<String, String>() {{
-                    put("recipient", supposedTpaRequestSender.getName());
-                    put("sender", playerSender.getName());
-                }}, "tpa", playerSender);
+                    put("sender", supposedTpaRequestSender.getName());
+                    put("recipient", playerSender.getName());
+                }}, "Tpa", playerSender);
             } catch (NoTpaRequestException e) { // Should be impossible but just to please java / intelliJ
                 e.printStackTrace();
             }

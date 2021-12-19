@@ -58,11 +58,54 @@ componentText:
             out: "{$componentText}  You sent a tpa here request to {recipient}"
             errors:
                 "consoleCannotSendTpaRequests":
-                    out: "{$componentText.errors}  Console cannot send tpa here  requests"
+                    out: "{$componentText.errors}  Console cannot send tpa here requests"
                 "acceptsOneArgument":
                     out: "{$componentText.errors}  /tpaHere only accepts one argument"
                 "playerIsNotOnline":
                     out: "{$componentText.errors}  Player {recipient} is not online"
+        "tpaAccept":
+            out: "{$componentText}  Accepting tpa request from {sender}"
+            errors:
+                "consoleCannotAcceptTpaRequests":
+                    out: "{$componentText.errors}  Console cannot accept tpa requests"
+                "acceptsOneArgument":
+                    out: "{$componentText.errors}  /tpaAccpet only accepts one argument"
+                "playerIsNotOnline":
+                    out: "{$componentText.errors}  Player {sender} is not online"
+                "noTpaRequest":
+                    out: "{$componentText.errors}  No tpa requests"
+                    otherForms:
+                        "withName":
+                            out: "{$componentText.errors}  No tpa request from {sender}"
+        "tpaDeny":
+            out: "{$componentText}  Denying tpa request from {sender}"
+            errors:
+                "consoleCannotDenyTpaRequests":
+                    out: "{$componentText.errors}  Console cannot deny tpa requests"
+                "acceptsOneArgument":
+                    out: "{$componentText.errors}  /tpaDeny only accepts one argument"
+                "playerIsNotOnline":
+                    out: "{$componentText.errors}  Player {sender} is not online"
+                "noTpaRequest":
+                    out: "{$componentText.errors}  No tpa requests"
+                    otherForms:
+                        "withName":
+                            out: "{$componentText.errors}  No tpa request from {sender}"
+        "tpaHereAll":
+            out: "{$componentText}  You sent a tpa request to the players {recipients}"
+            errors:
+                "consoleCannotSendTpaHereAllRequests":
+                    out: "{$componentText.error}  Console cannot send tpa here requests"
     otherForms:
+        "accept":
+            out: "{$componentText}  {recipient} accepted your tpa request"
+            otherForms:
+                "here":
+                    out: "{$componentText}  {recipient} accepted your tpa here request"
+        "deny":
+            out: "{$componentText}  {recipient} dennied your tpa request"
+            otherForms:
+                "here":
+                    out: "{$componentText}  {recipient} dennied your tpa here request"
         "here":
              out: "{$componentText}  You have received a tpa here request from {sender}"

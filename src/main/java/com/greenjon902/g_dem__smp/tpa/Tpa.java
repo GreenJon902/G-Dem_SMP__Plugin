@@ -51,8 +51,8 @@ public class Tpa implements PluginComponent {
             lastTpaRequestToPlayer.put(recipient, sender);
 
             ChatAPI.sendMessage("tpa", new HashMap<String, String>() {{
-                put("toUserName", recipient.getName());
-                put("fromUserName", sender.getName());
+                put("recipient", recipient.getName());
+                put("sender", sender.getName());
             }}, "Tpa", recipient);
         }
         System.out.println(tpaRequests);
@@ -68,8 +68,8 @@ public class Tpa implements PluginComponent {
             lastTpaRequestToPlayer.put(recipient, sender);
 
             ChatAPI.sendMessage("tpa.here", new HashMap<String, String>() {{
-                put("sender", recipient.getName());
-                put("recipient", sender.getName());
+                put("recipient", recipient.getName());
+                put("sender", sender.getName());
             }}, "Tpa", recipient);
         }
         System.out.println(tpaHereRequests);
@@ -84,6 +84,10 @@ public class Tpa implements PluginComponent {
                 tpaRequests.get(supposedTpaRequestSender).remove(sender);
                 lastTpaRequestToPlayer.remove(sender);
                 System.out.println(tpaHereRequests);
+                ChatAPI.sendMessage("tpa.accept", new HashMap<String, String>() {{
+                    put("sender", supposedTpaRequestSender.getName());
+                    put("recipient", sender.getName());
+                }}, "Tpa", supposedTpaRequestSender);
                 return;
             }
         }
@@ -95,10 +99,13 @@ public class Tpa implements PluginComponent {
                 tpaHereRequests.get(supposedTpaRequestSender).remove(sender);
                 lastTpaRequestToPlayer.remove(sender);
                 System.out.println(tpaHereRequests);
+                ChatAPI.sendMessage("tpa.accept.here", new HashMap<String, String>() {{
+                    put("sender", supposedTpaRequestSender.getName());
+                    put("recipient", sender.getName());
+                }}, "Tpa", supposedTpaRequestSender);
                 return;
             }
         }
-        System.out.println(tpaHereRequests);
 
         throw new NoTpaRequestException();
     }
@@ -117,7 +124,10 @@ public class Tpa implements PluginComponent {
 
                 tpaRequests.get(supposedTpaRequestSender).remove(sender);
                 lastTpaRequestToPlayer.remove(sender);
-                System.out.println(tpaHereRequests);
+                ChatAPI.sendMessage("tpa.deny", new HashMap<String, String>() {{
+                    put("sender", supposedTpaRequestSender.getName());
+                    put("recipient", sender.getName());
+                }}, "Tpa", supposedTpaRequestSender);
                 return;
             }
         }
@@ -127,7 +137,10 @@ public class Tpa implements PluginComponent {
 
                 tpaHereRequests.get(supposedTpaRequestSender).remove(sender);
                 lastTpaRequestToPlayer.remove(sender);
-                System.out.println(tpaHereRequests);
+                ChatAPI.sendMessage("tpa.deny.here", new HashMap<String, String>() {{
+                    put("sender", supposedTpaRequestSender.getName());
+                    put("recipient", sender.getName());
+                }}, "Tpa", supposedTpaRequestSender);
                 return;
             }
         }
