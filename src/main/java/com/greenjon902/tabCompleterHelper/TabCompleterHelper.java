@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class TabCompleterHelper {
-    public static List<String> noSolutions = new ArrayList<String>();
+    public static List<String> noSolutions = new ArrayList<>();
 
     public static List<String> filter(List<String> allSolutions, String partialSolution) {
         ArrayList<String> filteredSolutions = new ArrayList<>();
@@ -18,7 +18,7 @@ public class TabCompleterHelper {
         return filteredSolutions;
     }
 
-    public static List<String> filterWithFunction(Object[] allSolutionsBeforeFunction, FilterWithFunctionFunction function, String partialSolution) {
+    public static List<String> filterWithFunction(Object[] allSolutionsBeforeFunction, FilterWithFunctionFunction<Object> function, String partialSolution) {
         ArrayList<String> filteredSolutions = new ArrayList<>();
 
         for (Object solutionBeforeFunction : allSolutionsBeforeFunction) {
