@@ -3,6 +3,7 @@ package com.greenjon902.g_dem__smp.ticks.commands;
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.ticks.Ticks;
+import com.greenjon902.tabCompleterHelper.TabCompleterHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -10,7 +11,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabExecutor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 public class CommandQueryTicks implements TabExecutor {
     @Override
@@ -45,16 +49,10 @@ public class CommandQueryTicks implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            ArrayList<String> players = new ArrayList<>();
-            for (UUID uniqueId : ((Ticks) G_Dem__SMP.getComponent("Ticks")).getAllPlayersWithTickRecords()) {
-                String name = Bukkit.getOfflinePlayer(uniqueId).getName();
-                if (name != null) {
-                    if (name.toLowerCase(Locale.ROOT).startsWith(args[0].toLowerCase(Locale.ROOT))) {
-                        players.add(name);
-                    }
-                }
-            }
-            return players;
+            return TabCompleterHelper.filterWithFunction(
+                    ((Ticks) G_Dem__SMP.getComponent("Ticks")).getAllPlayersWithTickRecords(),
+                    (uuid) -> Bukkit.getOfflinePlayer((UUID) uuid).getName(),
+                    args[0]);
         }
         return new ArrayList<>();
     }
