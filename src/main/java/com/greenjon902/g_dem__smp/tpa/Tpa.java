@@ -4,6 +4,7 @@ import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.tpa.commands.*;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -38,6 +39,22 @@ public class Tpa implements PluginComponent {
 
     }
 
+    private void timeoutTpaRequest(Player sender, Player recipient, boolean isHere) {
+        if (!isHere) {
+            if (tpaRequests.containsKey(sender)) {
+                tpaRequests.get(sender).remove(recipient);
+            }
+        } else {
+            if (tpaHereRequests.containsKey(sender)) {
+                tpaHereRequests.get(sender).remove(recipient);
+            }
+        }
+        if (lastTpaRequestToPlayer.containsKey(sender)) {
+            if (lastTpaRequestToPlayer.get(sender).equals(recipient)) {
+            }
+        }
+    }
+
     public void sendTpaRequest(Player sender, Player recipient) {
         if (!tpaRequests.containsKey(sender)) {
             tpaRequests.put(sender, new ArrayList<>());
@@ -52,8 +69,8 @@ public class Tpa implements PluginComponent {
                 put("recipient", recipient.getName());
                 put("sender", sender.getName());
             }}, "Tpa", recipient);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(G_Dem__SMP.getInstance(), () -> timeoutTpaRequest(sender, recipient, false), 100); // TODO: add delay to config
         }
-        System.out.println(tpaRequests);
     }
 
     public void sendTpaHereRequest(Player sender, Player recipient) {
@@ -70,7 +87,7 @@ public class Tpa implements PluginComponent {
                 put("sender", sender.getName());
             }}, "Tpa", recipient);
         }
-        System.out.println(tpaHereRequests);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(G_Dem__SMP.getInstance(), () -> timeoutTpaRequest(sender, recipient, true), 100); // TODO: add delay to config
     }
 
     public void tpaAccept(Player sender, Player supposedTpaRequestSender) throws NoTpaRequestException {
