@@ -4,6 +4,7 @@ import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
 import com.greenjon902.g_dem__smp.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.tpa.commands.*;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -38,6 +39,45 @@ public class Tpa implements PluginComponent {
 
     }
 
+    private void timeoutTpaRequest(Player sender, Player recipient, boolean isHere) {
+        if (!isHere) {
+            if (tpaRequests.containsKey(sender)) {
+                if (tpaRequests.get(sender).contains(recipient)) {
+                    tpaRequests.get(sender).remove(recipient);
+
+                    ChatAPI.sendMessage("tpa.timeout.senderSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", sender);
+                    ChatAPI.sendMessage("tpa.timeout.recipientSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", recipient);
+                }
+            }
+        } else {
+            if (tpaHereRequests.containsKey(sender)) {
+                if (tpaRequests.get(sender).contains(recipient)) {
+                    tpaHereRequests.get(sender).remove(recipient);
+
+                    ChatAPI.sendMessage("tpa.here.timeout.senderSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", sender);
+                    ChatAPI.sendMessage("tpa.here.timeout.recipientSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", recipient);
+                }
+            }
+        }
+        if (lastTpaRequestToPlayer.containsKey(sender)) {
+            if (lastTpaRequestToPlayer.get(sender).equals(recipient)) {
+                lastTpaRequestToPlayer.remove(sender);
+            }
+        }
+    }
+
     public void sendTpaRequest(Player sender, Player recipient) {
         if (!tpaRequests.containsKey(sender)) {
             tpaRequests.put(sender, new ArrayList<>());
@@ -52,8 +92,8 @@ public class Tpa implements PluginComponent {
                 put("recipient", recipient.getName());
                 put("sender", sender.getName());
             }}, "Tpa", recipient);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(G_Dem__SMP.getInstance(), () -> timeoutTpaRequest(sender, recipient, false), 100); // TODO: add delay to config
         }
-        System.out.println(tpaRequests);
     }
 
     public void sendTpaHereRequest(Player sender, Player recipient) {
@@ -70,7 +110,7 @@ public class Tpa implements PluginComponent {
                 put("sender", sender.getName());
             }}, "Tpa", recipient);
         }
-        System.out.println(tpaHereRequests);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(G_Dem__SMP.getInstance(), () -> timeoutTpaRequest(sender, recipient, true), 100); // TODO: add delay to config
     }
 
     public void tpaAccept(Player sender, Player supposedTpaRequestSender) throws NoTpaRequestException {
