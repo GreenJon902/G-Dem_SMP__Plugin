@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class CommandTpaAccept implements TabExecutor {
     @Override
@@ -81,8 +80,8 @@ public class CommandTpaAccept implements TabExecutor {
 
             if (args.length == 1) {
                 return TabCompleterHelper.filterWithFunction(
-                        new List[]{((Tpa) G_Dem__SMP.getComponent("Tpa")).getPlayersWhoSentATpaRequestWhereRecipientIs(playerSender)},
-                        (uuid) -> Bukkit.getOfflinePlayer((UUID) uuid).getName(),
+                        ((Tpa) G_Dem__SMP.getComponent("Tpa")).getPlayersWhoSentATpaRequestWhereRecipientIs(playerSender),
+                        (player) -> ((Player) player).getName(),
                         args[0]);
             }
         }

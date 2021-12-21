@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Tpa implements PluginComponent {
     private final HashMap<Player, ArrayList<Player>> tpaRequests = new HashMap<>();
@@ -148,7 +147,7 @@ public class Tpa implements PluginComponent {
         throw new NoTpaRequestException();
     }
 
-    public List<Player> getPlayersWhoSentATpaRequestWhereRecipientIs(Player recipient) {
+    public Player[] getPlayersWhoSentATpaRequestWhereRecipientIs(Player recipient) {
         ArrayList<Player> players = new ArrayList<>();
         for (Player sender : tpaRequests.keySet()) {
             if (tpaRequests.containsKey(sender)) {
@@ -165,6 +164,6 @@ public class Tpa implements PluginComponent {
                 }
             }
         }
-        return players;
+        return players.toArray(new Player[0]);
     }
 }

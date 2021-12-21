@@ -11,10 +11,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class CommandTpa implements TabExecutor {
     @Override
@@ -49,8 +47,8 @@ public class CommandTpa implements TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
             return TabCompleterHelper.filterWithFunction(
-                    new Collection[]{Bukkit.getOnlinePlayers()},
-                    (uuid) -> Bukkit.getOfflinePlayer((UUID) uuid).getName(),
+                    Bukkit.getOnlinePlayers().toArray(),
+                    (player) -> ((Player) player).getName(),
                     args[0]);
         }
         return TabCompleterHelper.noSolutions;
