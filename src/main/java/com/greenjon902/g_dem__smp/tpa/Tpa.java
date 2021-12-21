@@ -51,6 +51,7 @@ public class Tpa implements PluginComponent {
         }
         if (lastTpaRequestToPlayer.containsKey(sender)) {
             if (lastTpaRequestToPlayer.get(sender).equals(recipient)) {
+                lastTpaRequestToPlayer.remove(sender);
             }
         }
     }
