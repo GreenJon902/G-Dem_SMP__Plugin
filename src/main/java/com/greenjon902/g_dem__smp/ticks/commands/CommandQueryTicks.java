@@ -11,7 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabExecutor;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -54,6 +53,6 @@ public class CommandQueryTicks implements TabExecutor {
                     (uuid) -> Bukkit.getOfflinePlayer((UUID) uuid).getName(),
                     args[0]);
         }
-        return new ArrayList<>();
+        return TabCompleterHelper.noSolutions;
     }
 }
