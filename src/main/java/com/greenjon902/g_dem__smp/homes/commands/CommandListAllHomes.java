@@ -9,14 +9,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 public class CommandListAllHomes implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        HashMap<UUID, Set<String>> uniqueIdVersion = ((Homes) G_Dem__SMP.getComponent("Homes")).storage.getAllPlayerHomes();
-        HashMap<String, Set<String>> nameVersion = new HashMap<>();
+        HashMap<UUID, List<String>> uniqueIdVersion = ((Homes) G_Dem__SMP.getComponent("Homes")).storage.getAllPlayerHomes();
+        HashMap<String, List<String>> nameVersion = new HashMap<>();
 
         for (UUID uniqueId : uniqueIdVersion.keySet()) {
             nameVersion.put(Bukkit.getOfflinePlayer(uniqueId).getName(), uniqueIdVersion.get(uniqueId));
