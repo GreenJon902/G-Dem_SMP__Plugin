@@ -42,11 +42,33 @@ public class Tpa implements PluginComponent {
     private void timeoutTpaRequest(Player sender, Player recipient, boolean isHere) {
         if (!isHere) {
             if (tpaRequests.containsKey(sender)) {
-                tpaRequests.get(sender).remove(recipient);
+                if (tpaRequests.get(sender).contains(recipient)) {
+                    tpaRequests.get(sender).remove(recipient);
+
+                    ChatAPI.sendMessage("tpa.timeout.senderSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", sender);
+                    ChatAPI.sendMessage("tpa.timeout.recipientSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", recipient);
+                }
             }
         } else {
             if (tpaHereRequests.containsKey(sender)) {
-                tpaHereRequests.get(sender).remove(recipient);
+                if (tpaRequests.get(sender).contains(recipient)) {
+                    tpaHereRequests.get(sender).remove(recipient);
+
+                    ChatAPI.sendMessage("tpa.here.timeout.senderSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", sender);
+                    ChatAPI.sendMessage("tpa.here.timeout.recipientSide", new HashMap<String, String>() {{
+                        put("sender", sender.getName());
+                        put("recipient", recipient.getName());
+                    }}, "Tpa", recipient);
+                }
             }
         }
         if (lastTpaRequestToPlayer.containsKey(sender)) {
