@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class TabCompleterHelper {
-    static List<String> noSolutions = new ArrayList<String>();
+    public static List<String> noSolutions = new ArrayList<String>();
 
-    static List<String> filter(List<String> allSolutions, String typedSolution) {
+    public static List<String> filter(List<String> allSolutions, String typedSolution) {
         ArrayList<String> filteredSolutions = new ArrayList<>();
 
         for (String solution : allSolutions) {
