@@ -23,8 +23,10 @@ public class TabCompleterHelper {
 
         for (Object solutionBeforeFunction : allSolutionsBeforeFunction) {
             String solution = function.convert(solutionBeforeFunction);
-            if (solution.toLowerCase(Locale.ROOT).startsWith(partialSolution.toLowerCase(Locale.ROOT))) {
-                filteredSolutions.add(solution);
+            if (solution != null) {
+                if (solution.toLowerCase(Locale.ROOT).startsWith(partialSolution.toLowerCase(Locale.ROOT))) {
+                    filteredSolutions.add(solution);
+                }
             }
         }
         return filteredSolutions;
