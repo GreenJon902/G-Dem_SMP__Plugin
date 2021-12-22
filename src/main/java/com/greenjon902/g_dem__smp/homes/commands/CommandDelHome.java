@@ -41,13 +41,12 @@ public class CommandDelHome implements TabExecutor {
                 UUID finalUser = user;
                 //noinspection ConstantConditions
                 if (Bukkit.getOfflinePlayer(user).getName().equals(sender.getName())) {
-                    ChatAPI.sendMessage("homes.commands.delHome.deletedHome", new HashMap<String, String>() {{
+                    ChatAPI.sendMessage("homes.commands.delHome", new HashMap<String, String>() {{
                         put("homeName", finalHome);
                     }}, "Homes", player);
                 } else {
-                    ChatAPI.sendMessage("homes.commands.delHome.deletedHome.other", new HashMap<String, String>() {{
-                        //noinspection ConstantConditions
-                        put("userName", Bukkit.getServer().getPlayer(finalUser).getName());
+                    ChatAPI.sendMessage("homes.commands.delHome.other", new HashMap<String, String>() {{
+                        put("userName", Bukkit.getOfflinePlayer(finalUser).getName());
                         put("homeName", finalHome);
                     }}, "Homes", player);
                 }

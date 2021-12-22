@@ -82,9 +82,8 @@ public class CommandHome implements TabExecutor {
                     }}, "Homes", player);
                 }
             } else {
-                ChatAPI.sendMessage("homes.commands.home.errors.noTeleportToOtherPermission.withName", new HashMap<String, String>() {{
-                    //noinspection ConstantConditions
-                    put("userName", Bukkit.getServer().getPlayer(finalUniqueId).getName());
+                ChatAPI.sendMessage("homes.commands.home.errors.noTeleportToOtherPermission", new HashMap<String, String>() {{
+                    put("userName", Bukkit.getServer().getOfflinePlayer(finalUniqueId).getName());
                     put("homeName", finalName);
                 }}, "Homes", player);
             }
