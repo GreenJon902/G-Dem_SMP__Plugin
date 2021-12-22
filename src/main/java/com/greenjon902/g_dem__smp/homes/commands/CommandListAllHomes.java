@@ -23,7 +23,7 @@ public class CommandListAllHomes implements TabExecutor {
             nameVersion.put(Bukkit.getOfflinePlayer(uniqueId).getName(), uniqueIdVersion.get(uniqueId));
         }
 
-        ChatAPI.sendMessage("homes.commands.listAllHomes.list", new HashMap<String, String>() {{
+        ChatAPI.sendMessage("homes.commands.listAllHomes", new HashMap<String, String>() {{
             put("list", nameVersion.toString());
         }}, "Homes", sender);
 

@@ -12,11 +12,31 @@ componentText:
                     out: "{$componentText}  Deleted {userName}'s home called {homeName}"
             errors:
                 "consoleCantHaveHomes":
-                    out: "{$componentText.errors}  Console cannot have home so there is nothing to delete"
+                    out: "{$componentText.errors}  Console cannot have homes so there is nothing to delete"
         "home":
+            out: "{$componentText}  Teleported to home"
+            otherForms:
+                "withName":
+                    out: "{$componentText}  Teleported to home called {homeName}"
+                "other":
+                    otherForms:
+                        "withName":
+                            out: "{$componentText}  Teleported to {userName}'s home called {homeName}"
             errors:
                 "consoleCannotTeleportToHomes":
                     out: "{$componentText.errors}  Console cannot teleport to homes"
+                "noTeleportToOtherPermission":
+                    out: "{$componentText.errors}  You do not have permission to teleport to {userName}'s home"
+        "listAllHomes":
+            out: "{$componentText}  Homes are {list}"
+        "listHomes":
+            out: "{$componentText}  Your homes are {list}"
+            otherForms:
+                "other":
+                    out: "{$componentText}  {userName}'s homes are {list}"
+            errors:
+                "consoleCantHaveHomes":
+                    out: "{$componentText.errors}  Console cannot have homes so their is nothing to list"
         "setHome":
             out: "{$componentText}  Set home at {x}, {y}, {z} in world {world}"
             otherForms:
@@ -27,6 +47,8 @@ componentText:
                         "withName":
                             out: "{$componentText}  Set home called {homeName} for {userName} at {x}, {y}, {z} in world {world}"
             errors:
+                "consoleCantSetHomes":
+                    out: "{$componentText.errors}  Console cannot set homes"
                 "homeAlreadyExists":
                     out: "{$componentText.errors}  Home already exists!"
                     otherForms:

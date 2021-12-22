@@ -38,13 +38,13 @@ public class CommandListHomes implements TabExecutor {
 
             //noinspection ConstantConditions
             if (Bukkit.getOfflinePlayer(uniqueId).getName().equals(sender.getName())) {
-                ChatAPI.sendMessage("homes.commands.listHomes.list", new HashMap<String, String>() {{
+                ChatAPI.sendMessage("homes.commands.listHomes", new HashMap<String, String>() {{
                     put("list", ((Homes) G_Dem__SMP.getComponent("Homes")).storage.getPlayerHomes(uniqueId).toString());
                 }}, "Homes", sender);
 
             } else {
-                ChatAPI.sendMessage("homes.commands.listHomes.list.other", new HashMap<String, String>() {{
-                    put("user", Bukkit.getServer().getOfflinePlayer(uniqueId).getName());
+                ChatAPI.sendMessage("homes.commands.listHomes.other", new HashMap<String, String>() {{
+                    put("userName", Bukkit.getServer().getOfflinePlayer(uniqueId).getName());
                     put("list", ((Homes) G_Dem__SMP.getComponent("Homes")).storage.getPlayerHomes(uniqueId).toString());
                 }}, "Homes", sender);
             }
