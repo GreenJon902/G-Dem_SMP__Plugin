@@ -46,8 +46,9 @@ public class Ticks implements PluginComponent {
         }
 
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("modifyTicks").setExecutor(new CommandModifyTicks());
-        G_Dem__SMP.getInstance().getCommand("queryTicks").setExecutor(new CommandQueryTicks());
+        G_Dem__SMP.getInstance().getCommand("modifyticks").setExecutor(new CommandModifyTicks());
+        //noinspection ConstantConditions
+        G_Dem__SMP.getInstance().getCommand("queryticks").setExecutor(new CommandQueryTicks());
     }
 
     @Override

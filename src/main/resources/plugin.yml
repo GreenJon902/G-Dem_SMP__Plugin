@@ -7,47 +7,43 @@ authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
 
 commands:
-  setHome:
+  sethome:
     description: Create a home for you or a player
     usage: /<command> [user] [homename]
-    permission: G_Dem__SMP.homes.sethome
-
+    permission: g_dem__smp.homes.sethome
   home:
     description: Teleport you to the given home
     usage: /<command> [user] [homename]
-    permission: G_Dem__SMP.homes.home
-
-  delHome:
+    permission: g_dem__smp.homes.home
+  delhome:
     description: Delete your or a player's home
     usage: /<command> [user] [homename]
-    permission: G_Dem__SMP.homes.delhome
-
-  listHomes:
+    permission: g_dem__smp.homes.delhome
+  listhomes:
     description: List your or a players homes
     usage: /<command> [user]
-    permission: G_Dem__SMP.homes.listHomes
-
-  listAllHomes:
+    permission: g_dem__smp.homes.listHomes
+  listallhomes:
     description: List all homes of all players
     usage: /<command>
-    permission: G_Dem__SMP.homes.listAllHomes
+    permission: g_dem__smp.homes.listAllHomes
 
-  modifyTicks:
+  modifyticks:
     description: Modify someones tick amount
     usage: /<command> <target> <add|subtract|set> <amount>
-  queryTicks:
+  queryticks:
     description: Get someones tick amount(s)
     usage: /<command> [amount=1]
 
-  banWord:
+  banword:
     description: Ban a word from being used in chat
     usage: /<command> <word>
     permission: G_Dem__SMP.chat.banword
-  unbanWord:
+  unbanword:
     description: Unban a word from being used in chat
     usage: /<command> <word>
     permission: G_Dem__SMP.chat.unbanword
-  listBannedWords:
+  listbannedwords:
     description: Unban a word from being used in chat
     usage: /<command>
     permission: G_Dem__SMP.chat.listBannedWords
@@ -56,7 +52,7 @@ commands:
     description: Toggle sit mode
     usage: /sit
     permission: G_Dem__SMP.sit.sit
-  standAll:
+  standall:
     description: Stand All Players
     usage: /standAll
     permission: G_Dem__SMP.sit.standAll
@@ -86,52 +82,49 @@ commands:
 
 
 permissions:
-  G_Dem__SMP.homes.sethome:
+  g_dem__smp.homes.sethome:
     default: true
-  G_Dem__SMP.homes.sethome.other:
+  g_dem__smp.homes.sethome.other:
+    default: op
+  g_dem__smp.homes.home:
+    default: true
+  g_dem__smp.homes.home.other:
+    default: op
+  g_dem__smp.homes.delhome:
+    default: true
+  g_dem__smp.homes.delhome.other:
+    default: op
+  g_dem__smp.homes.listhomes:
+    default: true
+  g_dem__smp.homes.listhomes.other:
+    default: op
+  g_dem__smp.homes.listallhomes:
     default: op
 
-  G_Dem__SMP.homes.home:
-    default: true
-  G_Dem__SMP.homes.home.other:
+  g_dem__smp.ticks.modify:
     default: op
 
-  G_Dem__SMP.homes.delhome:
+  g_dem__smp.sit.sit:
     default: true
-  G_Dem__SMP.homes.delhome.other:
+  g_dem__smp.sit.standall:
     default: op
 
-  G_Dem__SMP.homes.listhomes:
-    default: true
-  G_Dem__SMP.homes.listhomes.other:
+  g_dem__smp.chat.banword:
     default: op
-  G_Dem__SMP.homes.listallhomes:
+  g_dem__smp.chat.unbanword:
     default: op
-
-  G_Dem__SMP.ticks.modify:
+  g_dem__smp.chat.bypassbannedwords:
     default: op
-
-  G_Dem__SMP.sit.sit:
-    default: true
-  G_Dem__SMP.sit.standAll:
-    default: op
-
-  G_Dem__SMP.chat.banword:
-    default: op
-  G_Dem__SMP.chat.unbanword:
-    default: op
-  G_Dem__SMP.chat.bypassbannedwords:
-    default: op
-  G_Dem__SMP.chat.listbannedwords:
+  g_dem__smp.chat.listbannedwords:
     default: true
 
-  G_Dem__SMP.tpa.tpa:
+  g_dem__smp.tpa.tpa:
     default: true
-  G_Dem__SMP.tpa.accept:
+  g_dem__smp.tpa.accept:
     default: true
-  G_Dem__SMP.tpa.deny:
+  g_dem__smp.tpa.deny:
     default: true
-  G_Dem__SMP.tpa.tpahere:
+  g_dem__smp.tpa.tpahere:
     default: true
-  G_Dem__SMP.tpa.tpahereall:
+  g_dem__smp.tpa.tpahereall:
     default: op

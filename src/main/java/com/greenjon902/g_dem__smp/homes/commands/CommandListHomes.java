@@ -33,7 +33,7 @@ public class CommandListHomes implements TabExecutor {
             uniqueId = Bukkit.getOfflinePlayer(args[0]).getUniqueId();
         }
         //noinspection ConstantConditions
-        if (sender.hasPermission("G_Dem__SMP.homes.listHome.other") || Bukkit.getOfflinePlayer(uniqueId).getName().equals(sender.getName())) {
+        if (sender.hasPermission("g_dem__smp.homes.listHome.other") || Bukkit.getOfflinePlayer(uniqueId).getName().equals(sender.getName())) {
             sender.sendMessage(((Homes) G_Dem__SMP.getComponent("Homes")).storage.getPlayerHomes(uniqueId).toString());
 
             //noinspection ConstantConditions

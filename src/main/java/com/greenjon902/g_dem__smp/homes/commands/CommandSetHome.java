@@ -70,7 +70,7 @@ public class CommandSetHome implements TabExecutor {
 
             } else if (args.length == 2)  {
                 //noinspection ConstantConditions
-                if (sender.hasPermission("G_Dem__SMP.homes.sethome.other") || Bukkit.getOfflinePlayer(Bukkit.getOfflinePlayer(args[0]).getUniqueId()).getName().equals(sender.getName())) {
+                if (sender.hasPermission("g_dem__smp.homes.sethome.other") || Bukkit.getOfflinePlayer(Bukkit.getOfflinePlayer(args[0]).getUniqueId()).getName().equals(sender.getName())) {
                     try {
                         ((Homes) G_Dem__SMP.getComponent("Homes")).storage.setPlayerHome(Bukkit.getOfflinePlayer(args[0]).getUniqueId(), args[1], player.getLocation());
                         ChatAPI.sendMessage("homes.commands.setHome.setHome.other.withName", new HashMap<String, String>() {{
@@ -101,7 +101,7 @@ public class CommandSetHome implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (sender.hasPermission("G_Dem__SMP.homes.sethome.other")) {
+        if (sender.hasPermission("g_dem__smp.homes.sethome.other")) {
             if (args.length == 1) {
                 return TabCompleterHelper.filterWithFunction(Bukkit.getOfflinePlayers(), (player) -> ((OfflinePlayer) player).getName(), args[0]);
             }
