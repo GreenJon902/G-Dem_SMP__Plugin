@@ -7,30 +7,26 @@ authors: [ GreenJon902 ]
 description: The one for all G-Dem SMP plugin
 
 commands:
-  setHome:
+  sethome:
     description: Create a home for you or a player
     usage: /<command> [user] [homename]
-    permission: G_Dem__SMP.homes.sethome
-
+    permission: g_dem__smp.homes.sethome
   home:
     description: Teleport you to the given home
     usage: /<command> [user] [homename]
-    permission: G_Dem__SMP.homes.home
-
-  delHome:
+    permission: g_dem__smp.homes.home
+  delhome:
     description: Delete your or a player's home
     usage: /<command> [user] [homename]
-    permission: G_Dem__SMP.homes.delhome
-
-  listHomes:
+    permission: g_dem__smp.homes.delhome
+  listhomes:
     description: List your or a players homes
     usage: /<command> [user]
-    permission: G_Dem__SMP.homes.listHomes
-
-  listAllHomes:
+    permission: g_dem__smp.homes.listHomes
+  listallhomes:
     description: List all homes of all players
     usage: /<command>
-    permission: G_Dem__SMP.homes.listAllHomes
+    permission: g_dem__smp.homes.listAllHomes
 
   modifyTicks:
     description: Modify someones tick amount
@@ -86,26 +82,23 @@ commands:
 
 
 permissions:
-  G_Dem__SMP.homes.sethome:
+  g_dem__smp.homes.sethome:
     default: true
-  G_Dem__SMP.homes.sethome.other:
+  g_dem__smp.homes.sethome.other:
     default: op
-
-  G_Dem__SMP.homes.home:
+  g_dem__smp.homes.home:
     default: true
-  G_Dem__SMP.homes.home.other:
+  g_dem__smp.homes.home.other:
     default: op
-
-  G_Dem__SMP.homes.delhome:
+  g_dem__smp.homes.delhome:
     default: true
-  G_Dem__SMP.homes.delhome.other:
+  g_dem__smp.homes.delhome.other:
     default: op
-
-  G_Dem__SMP.homes.listhomes:
+  g_dem__smp.homes.listhomes:
     default: true
-  G_Dem__SMP.homes.listhomes.other:
+  g_dem__smp.homes.listhomes.other:
     default: op
-  G_Dem__SMP.homes.listallhomes:
+  g_dem__smp.homes.listallhomes:
     default: op
 
   G_Dem__SMP.ticks.modify:

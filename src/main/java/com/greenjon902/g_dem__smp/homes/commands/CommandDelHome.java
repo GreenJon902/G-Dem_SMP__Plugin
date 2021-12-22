@@ -31,7 +31,7 @@ public class CommandDelHome implements CommandExecutor {
                 home = args[1];
             }
             //noinspection ConstantConditions
-            if (sender.hasPermission("G_Dem__SMP.homes.delhome.other") || Bukkit.getOfflinePlayer(user).getName().equals(sender.getName())) {
+            if (sender.hasPermission("g_dem__smp.homes.delhome.other") || Bukkit.getOfflinePlayer(user).getName().equals(sender.getName())) {
                 ((Homes) G_Dem__SMP.getComponent("Homes")).storage.deleteHome(user, home);
 
                 String finalHome = home;

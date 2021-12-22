@@ -20,15 +20,15 @@ public class Homes implements PluginComponent {
 
         logger.info("Registering commands...");
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("setHome").setExecutor(new CommandSetHome());
+        G_Dem__SMP.getInstance().getCommand("sethome").setExecutor(new CommandSetHome());
         //noinspection ConstantConditions
         G_Dem__SMP.getInstance().getCommand("home").setExecutor(new CommandHome());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("delHome").setExecutor(new CommandDelHome());
+        G_Dem__SMP.getInstance().getCommand("delhome").setExecutor(new CommandDelHome());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("listHomes").setExecutor(new CommandListHomes());
+        G_Dem__SMP.getInstance().getCommand("listhomes").setExecutor(new CommandListHomes());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("listAllHomes").setExecutor(new CommandListAllHomes());
+        G_Dem__SMP.getInstance().getCommand("listallhomes").setExecutor(new CommandListAllHomes());
         logger.info("Registered commands");
     }
 

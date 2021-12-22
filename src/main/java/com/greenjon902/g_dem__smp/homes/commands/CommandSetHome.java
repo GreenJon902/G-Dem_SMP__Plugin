@@ -67,7 +67,7 @@ public class CommandSetHome implements CommandExecutor {
 
             } else if (args.length == 2)  {
                 //noinspection ConstantConditions
-                if (sender.hasPermission("G_Dem__SMP.homes.sethome.other") || Bukkit.getOfflinePlayer(Bukkit.getOfflinePlayer(args[0]).getUniqueId()).getName().equals(sender.getName())) {
+                if (sender.hasPermission("g_dem__smp.homes.sethome.other") || Bukkit.getOfflinePlayer(Bukkit.getOfflinePlayer(args[0]).getUniqueId()).getName().equals(sender.getName())) {
                     try {
                         ((Homes) G_Dem__SMP.getComponent("Homes")).storage.setPlayerHome(Bukkit.getOfflinePlayer(args[0]).getUniqueId(), args[1], player.getLocation());
                         ChatAPI.sendMessage("homes.commands.setHome.setHome.other.withName", new HashMap<String, String>() {{
