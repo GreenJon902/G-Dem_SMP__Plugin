@@ -3,17 +3,19 @@ package com.greenjon902.g_dem__smp.tpa.commands;
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.tpa.Tpa;
+import com.greenjon902.tabCompleterHelper.TabCompleterHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class CommandTpaHereAll implements CommandExecutor {
+public class CommandTpaHereAll implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof ConsoleCommandSender) {
@@ -37,5 +39,10 @@ public class CommandTpaHereAll implements CommandExecutor {
             }}, "Tpa", playerSender);
         }
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        return TabCompleterHelper.noSolutions;
     }
 }
