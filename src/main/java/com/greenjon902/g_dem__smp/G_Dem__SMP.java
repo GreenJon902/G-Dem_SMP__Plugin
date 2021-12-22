@@ -1,10 +1,10 @@
 package com.greenjon902.g_dem__smp;
 
-import com.greenjon902.g_dem__smp.chat.Chat;
-import com.greenjon902.g_dem__smp.homes.Homes;
-import com.greenjon902.g_dem__smp.sit.Sit;
-import com.greenjon902.g_dem__smp.ticks.Ticks;
-import com.greenjon902.g_dem__smp.tpa.Tpa;
+import com.greenjon902.g_dem__smp.components.chat.Chat;
+import com.greenjon902.g_dem__smp.components.homes.Homes;
+import com.greenjon902.g_dem__smp.components.sit.Sit;
+import com.greenjon902.g_dem__smp.components.ticks.Ticks;
+import com.greenjon902.g_dem__smp.components.tpa.Tpa;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
