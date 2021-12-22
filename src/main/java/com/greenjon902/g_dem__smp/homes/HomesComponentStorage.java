@@ -8,10 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class HomesComponentStorage {
     private File configFile;
@@ -120,12 +117,12 @@ public class HomesComponentStorage {
         }
     }
 
-    public Set<String> getPlayerHomes(UUID uniqueId) {
-        return homes.get(uniqueId).keySet();
+    public List<String> getPlayerHomes(UUID uniqueId) {
+        return new ArrayList<>(homes.get(uniqueId).keySet());
     }
 
-    public HashMap<UUID, Set<String>> getAllPlayerHomes() {
-        HashMap<UUID, Set<String>> allHomes = new HashMap<>();
+    public HashMap<UUID, List<String>> getAllPlayerHomes() {
+        HashMap<UUID, List<String>> allHomes = new HashMap<>();
 
         for (UUID uniqueId : homes.keySet()) {
             allHomes.put(uniqueId, getPlayerHomes(uniqueId));

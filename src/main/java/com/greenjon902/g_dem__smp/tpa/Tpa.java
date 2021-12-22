@@ -186,4 +186,24 @@ public class Tpa implements PluginComponent {
 
         throw new NoTpaRequestException();
     }
+
+    public Player[] getPlayersWhoSentATpaRequestWhereRecipientIs(Player recipient) {
+        ArrayList<Player> players = new ArrayList<>();
+        for (Player sender : tpaRequests.keySet()) {
+            if (tpaRequests.containsKey(sender)) {
+                 if (tpaRequests.get(sender).contains(recipient)) {
+                     players.add(sender);
+                 }
+            }
+        }
+
+        for (Player sender : tpaHereRequests.keySet()) {
+            if (tpaHereRequests.containsKey(sender)) {
+                if (tpaHereRequests.get(sender).contains(recipient)) {
+                    players.add(sender);
+                }
+            }
+        }
+        return players.toArray(new Player[0]);
+    }
 }
