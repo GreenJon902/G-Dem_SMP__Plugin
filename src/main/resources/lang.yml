@@ -5,6 +5,18 @@ componentText:
 
 "homes":
     commands:
+        "delHome":
+            out: "{$componentText}  Deleted home called {homeName}"
+            otherForms:
+                "other":
+                    out: "{$componentText}  Deleted {userName}'s home called {homeName}"
+            errors:
+                "consoleCantHaveHomes":
+                    out: "{$componentText.errors}  Console cannot have home so there is nothing to delete"
+        "home":
+            errors:
+                "consoleCannotTeleportToHomes":
+                    out: "{$componentText.errors}  Console cannot teleport to homes"
         "setHome":
             out: "{$componentText}  Set home at {x}, {y}, {z} in world {world}"
             otherForms:
@@ -20,10 +32,10 @@ componentText:
                     otherForms:
                         "withName":
                             out: "{$componentText.errors}  Home called {homeName} already exists!"
-                    "other":
-                        otherForms:
-                            "withName":
-                                out: "{$componentText.errors}  {userName}'s home called {homeName} already exists!"
+                        "other":
+                            otherForms:
+                                "withName":
+                                    out: "{$componentText.errors}  {userName}'s home called {homeName} already exists!"
         "home":
             out: "{$componentText}  Teleported to home!"
             otherForms:
@@ -97,6 +109,12 @@ componentText:
                 "consoleCannotSendTpaHereAllRequests":
                     out: "{$componentText.error}  Console cannot send tpa here requests"
     otherForms:
+        "timeout":
+            otherForms:
+                "senderSide":
+                    out: "{$componentText}  Tpa request to {recipient} timed out"
+                "recipientSide":
+                    out: "{$componentText}  Tpa request from {sender} timed out"
         "accept":
             out: "{$componentText}  {recipient} accepted your tpa request"
             otherForms:
@@ -108,4 +126,11 @@ componentText:
                 "here":
                     out: "{$componentText}  {recipient} dennied your tpa here request"
         "here":
-             out: "{$componentText}  You have received a tpa here request from {sender}"
+            out: "{$componentText}  You have received a tpa here request from {sender}"
+            otherForms:
+                "timeout":
+                    otherForms:
+                        "senderSide":
+                            out: "{$componentText}  Tpa request to {recipient} timed out"
+                        "recipientSide":
+                            out: "{$componentText}  Tpa request from {sender} timed out"
