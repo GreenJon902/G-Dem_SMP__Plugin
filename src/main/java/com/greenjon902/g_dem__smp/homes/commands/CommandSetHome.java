@@ -101,7 +101,7 @@ public class CommandSetHome implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        if (sender.hasPermission("G_Dem__SMP.homes.sethome.other")) {
+        if (sender.hasPermission("g_dem__smp.homes.sethome.other")) {
             if (args.length == 1) {
                 return TabCompleterHelper.filterWithFunction(Bukkit.getOfflinePlayers(), (player) -> ((OfflinePlayer) player).getName(), args[0]);
             }

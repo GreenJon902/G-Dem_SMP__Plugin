@@ -97,7 +97,7 @@ public class CommandHome implements TabExecutor {
         if (args.length == 1) {
             ArrayList<String> solutions = new ArrayList<>();
 
-            if (sender.hasPermission("G_Dem__SMP.homes.home.other")) {
+            if (sender.hasPermission("g_dem__smp.homes.home.other")) {
                 solutions.addAll(TabCompleterHelper.filterWithFunction(
                         ((Homes) G_Dem__SMP.getComponent("Homes")).storage.getAllPlayerHomes().keySet().toArray(),
                         (uuid) -> Bukkit.getOfflinePlayer((UUID) uuid).getName(),
@@ -113,7 +113,7 @@ public class CommandHome implements TabExecutor {
             return solutions;
 
         } else if (args.length == 2) {
-            if (sender.hasPermission("G_Dem__SMP.homes.home.other")) {
+            if (sender.hasPermission("g_dem__smp.homes.home.other")) {
                 return TabCompleterHelper.filter(((Homes) G_Dem__SMP.getComponent("Homes")).storage.getPlayerHomes(Bukkit.getOfflinePlayer(args[0]).getUniqueId()), args[1]);
             }
         }
