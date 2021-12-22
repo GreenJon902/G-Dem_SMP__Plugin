@@ -100,7 +100,7 @@ class LangSection {
         langSection.standardOut = configurationSection.getCurrentPath();
 
         for (String component : configurationSection.getKeys(false)) {
-            System.out.println(component);
+
             if (component.equals("otherForms")) {
                 //noinspection ConstantConditions
                 for (String component2 : configurationSection.getConfigurationSection(component).getKeys(false)) {

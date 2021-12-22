@@ -84,7 +84,7 @@ public class Tpa implements PluginComponent {
         }
 
         if (!tpaRequests.get(sender).contains(recipient)) {
-            System.out.println("1" + recipient);
+
             tpaRequests.get(sender).add(recipient);
             lastTpaRequestToPlayer.put(recipient, sender);
 
@@ -114,14 +114,14 @@ public class Tpa implements PluginComponent {
     }
 
     public void tpaAccept(Player sender, Player supposedTpaRequestSender) throws NoTpaRequestException {
-        System.out.println(tpaHereRequests);
+
         if (tpaRequests.containsKey(supposedTpaRequestSender)) { // original sender -> original recipient
             if (tpaRequests.get(supposedTpaRequestSender).contains(sender)) {
 
                 supposedTpaRequestSender.teleport(sender.getLocation());
                 tpaRequests.get(supposedTpaRequestSender).remove(sender);
                 lastTpaRequestToPlayer.remove(sender);
-                System.out.println(tpaHereRequests);
+
                 ChatAPI.sendMessage("tpa.accept", new HashMap<String, String>() {{
                     put("sender", supposedTpaRequestSender.getName());
                     put("recipient", sender.getName());
@@ -136,7 +136,7 @@ public class Tpa implements PluginComponent {
                 sender.teleport(supposedTpaRequestSender.getLocation());
                 tpaHereRequests.get(supposedTpaRequestSender).remove(sender);
                 lastTpaRequestToPlayer.remove(sender);
-                System.out.println(tpaHereRequests);
+
                 ChatAPI.sendMessage("tpa.accept.here", new HashMap<String, String>() {{
                     put("sender", supposedTpaRequestSender.getName());
                     put("recipient", sender.getName());

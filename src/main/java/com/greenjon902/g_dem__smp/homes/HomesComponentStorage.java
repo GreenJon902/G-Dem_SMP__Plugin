@@ -112,7 +112,6 @@ public class HomesComponentStorage {
         if (playerHomes.containsKey(name)) {
             throw new HomeAlreadyExistsException();
         } else {
-            System.out.println(name);
             playerHomes.put(name, Home.fromLocation(location));
         }
     }
