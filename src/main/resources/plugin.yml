@@ -28,22 +28,22 @@ commands:
     usage: /<command>
     permission: g_dem__smp.homes.listAllHomes
 
-  modifyTicks:
+  modifyticks:
     description: Modify someones tick amount
     usage: /<command> <target> <add|subtract|set> <amount>
-  queryTicks:
+  queryticks:
     description: Get someones tick amount(s)
     usage: /<command> [amount=1]
 
-  banWord:
+  banword:
     description: Ban a word from being used in chat
     usage: /<command> <word>
     permission: G_Dem__SMP.chat.banword
-  unbanWord:
+  unbanword:
     description: Unban a word from being used in chat
     usage: /<command> <word>
     permission: G_Dem__SMP.chat.unbanword
-  listBannedWords:
+  listbannedwords:
     description: Unban a word from being used in chat
     usage: /<command>
     permission: G_Dem__SMP.chat.listBannedWords
@@ -52,7 +52,7 @@ commands:
     description: Toggle sit mode
     usage: /sit
     permission: G_Dem__SMP.sit.sit
-  standAll:
+  standall:
     description: Stand All Players
     usage: /standAll
     permission: G_Dem__SMP.sit.standAll
@@ -101,30 +101,30 @@ permissions:
   g_dem__smp.homes.listallhomes:
     default: op
 
-  G_Dem__SMP.ticks.modify:
+  g_dem__smp.ticks.modify:
     default: op
 
-  G_Dem__SMP.sit.sit:
+  g_dem__smp.sit.sit:
     default: true
-  G_Dem__SMP.sit.standAll:
+  g_dem__smp.sit.standall:
     default: op
 
-  G_Dem__SMP.chat.banword:
+  g_dem__smp.chat.banword:
     default: op
-  G_Dem__SMP.chat.unbanword:
+  g_dem__smp.chat.unbanword:
     default: op
-  G_Dem__SMP.chat.bypassbannedwords:
+  g_dem__smp.chat.bypassbannedwords:
     default: op
-  G_Dem__SMP.chat.listbannedwords:
+  g_dem__smp.chat.listbannedwords:
     default: true
 
-  G_Dem__SMP.tpa.tpa:
+  g_dem__smp.tpa.tpa:
     default: true
-  G_Dem__SMP.tpa.accept:
+  g_dem__smp.tpa.accept:
     default: true
-  G_Dem__SMP.tpa.deny:
+  g_dem__smp.tpa.deny:
     default: true
-  G_Dem__SMP.tpa.tpahere:
+  g_dem__smp.tpa.tpahere:
     default: true
-  G_Dem__SMP.tpa.tpahereall:
+  g_dem__smp.tpa.tpahereall:
     default: op

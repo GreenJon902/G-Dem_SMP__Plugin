@@ -20,13 +20,13 @@ public class Tpa implements PluginComponent {
         //noinspection ConstantConditions
         G_Dem__SMP.getInstance().getCommand("tpa").setExecutor(new CommandTpa());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("tpaAccept").setExecutor(new CommandTpaAccept());
+        G_Dem__SMP.getInstance().getCommand("tpaaccept").setExecutor(new CommandTpaAccept());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("tpaDeny").setExecutor(new CommandTpaDeny());
+        G_Dem__SMP.getInstance().getCommand("tpadeny").setExecutor(new CommandTpaDeny());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("tpaHere").setExecutor(new CommandTpaHere());
+        G_Dem__SMP.getInstance().getCommand("tpahere").setExecutor(new CommandTpaHere());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("tpaHereAll").setExecutor(new CommandTpaHereAll());
+        G_Dem__SMP.getInstance().getCommand("tpahereall").setExecutor(new CommandTpaHereAll());
     }
 
     @Override

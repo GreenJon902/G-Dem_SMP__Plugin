@@ -29,7 +29,7 @@ public class Sit implements PluginComponent {
         //noinspection ConstantConditions
         G_Dem__SMP.getInstance().getCommand("sit").setExecutor(new CommandSit());
         //noinspection ConstantConditions
-        G_Dem__SMP.getInstance().getCommand("standAll").setExecutor(new CommandStandAll());
+        G_Dem__SMP.getInstance().getCommand("standall").setExecutor(new CommandStandAll());
     }
 
     @Override
