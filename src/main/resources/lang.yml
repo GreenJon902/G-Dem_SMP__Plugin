@@ -78,6 +78,22 @@ componentText:
             otherForms:
                 "other":
                     out: "{$componentText}  The user {userName} has {tickAmount} ticks"
+            errors:
+                "consoleHasNoTickAmount":
+                    out: "{$componentText.errors}  Console does not have a tick amount"
+                "tooManyArguments":
+                    out: "{$componentText.errors}  /queryTicks takes either one or no arguements"
+        "modifyTicks":
+            otherForms:
+                "set":
+                    out: "{$componentText}  Changed the tick amount for {userName} from {before} to {after}"
+                "add":
+                    out: "{$componentText}  Added {amount} to {userName}'s tick count changing it from {before} to {after}"
+                "subtract":
+                    out: "{$componentText}  Subtracted {amount} from {userName}'s tick count changing it from {before} to {after}"
+            errors:
+                "requiresThreeArguments":
+                    out: "{$componentText.errors}  /modifyTicks requires exactly 3 arguements"
 
 "tpa":
     out: "{$componentText}  You have received a tpa request from {sender}"
