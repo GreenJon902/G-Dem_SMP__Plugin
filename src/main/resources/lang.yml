@@ -75,6 +75,11 @@ componentText:
             otherForms:
                 "other":
                     out: "{$componentText}  The user {userName} has {tickAmount} ticks"
+            errors:
+                "consoleHasNoTickAmount":
+                    out: "{$componentText.errors}  Console does not have a tick amount"
+                "tooManyArguments":
+                    out: "{$componentText.errors}  /queryTicks takes either one or no arguements"
 
 "tpa":
     out: "{$componentText}  You have received a tpa request from {sender}"
