@@ -2,6 +2,7 @@ package com.greenjon902.g_dem__smp.components.sit;
 
 import com.greenjon902.g_dem__smp.G_Dem__SMP;
 import com.greenjon902.g_dem__smp.PluginComponent;
+import com.greenjon902.g_dem__smp.components.chat.ChatAPI;
 import com.greenjon902.g_dem__smp.components.sit.commands.CommandSit;
 import com.greenjon902.g_dem__smp.components.sit.commands.CommandStandAll;
 import net.md_5.bungee.api.ChatMessageType;
@@ -11,6 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Stairs;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -22,6 +24,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import static javax.swing.UIManager.put;
 
 public class Sit implements PluginComponent {
     @Override
@@ -115,19 +119,34 @@ public class Sit implements PluginComponent {
         }
     }
 
-    public int standAll() {
+    public int standAll(CommandSender runner) {
         Logger logger = Bukkit.getLogger();
         logger.info("Standing all");
 
         Player[] players = chairs.keySet().toArray(new Player[0]);
+
+        String messageId = "sit.beenStoodUp";
+        HashMap<String, String> messageFormatStuff = new HashMap<>();
+        put("amount", String.valueOf(players.length));;
+
+        if (runner != null) {
+            messageFormatStuff.put("userNameOfResponsible", runner.getName());
+            messageId = "sit.beenStoodUp.withResponsibleName";
+        }
+
         int player_index;
         Player player;
         for (player_index = 0; player_index < players.length; player_index++) {
             player = players[player_index];
             stand(player);
+            ChatAPI.sendMessage(messageId, messageFormatStuff, "Sit", player);
         }
 
         logger.info("Finished standing all");
         return player_index;
+    }
+
+    public int standAll() {
+        return standAll(null);
     }
 }

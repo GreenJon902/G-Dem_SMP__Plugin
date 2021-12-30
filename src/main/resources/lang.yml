@@ -175,3 +175,16 @@ componentText:
                             out: "{$componentText}  Tpa request to {recipient} timed out"
                         "recipientSide":
                             out: "{$componentText}  Tpa request from {sender} timed out"
+
+"sit":
+    commands:
+        "sit":
+            out: "{$componentText}  You are now sitting"
+            otherForms:
+                "stand":
+                    out: "{$componentText}  You are now standing"
+            errors:
+                "consoleCantSit":
+                    out: "{$componentText.error}  Console cannot sit"
+        "standAll":
+            out: "{$componentText}  You stood {amountStood} players up"

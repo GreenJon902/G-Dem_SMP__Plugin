@@ -15,8 +15,8 @@ public class CommandStandAll implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        int amount = ((Sit) G_Dem__SMP.getComponent("Sit")).standAll();
-        ChatAPI.sendMessage("sit.commands.standAll.allStood", new HashMap<String, String>() {{
+        int amount = ((Sit) G_Dem__SMP.getComponent("Sit")).standAll(sender);
+        ChatAPI.sendMessage("sit.commands.standAll", new HashMap<String, String>() {{
             put("amountStood", String.valueOf(amount));
         }}, "Sit", sender);
 
