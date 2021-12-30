@@ -32,9 +32,9 @@ public class CommandSit implements TabExecutor {
             Player player = (Player) sender;
 
             if (Objects.equals(((Sit) G_Dem__SMP.getComponent("Sit")).toggle(player), "sitting")) {
-                ChatAPI.sendMessage("sit.commands.sit.nowSitting", "Sit", player);
+                ChatAPI.sendMessage("sit.commands.sit", "Sit", player);
             } else {
-                ChatAPI.sendMessage("sit.commands.sit.nowStanding", "Sit", player);
+                ChatAPI.sendMessage("sit.commands.sit.stand", "Sit", player);
             }
         }
 
