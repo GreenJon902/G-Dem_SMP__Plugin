@@ -71,8 +71,7 @@ public class CommandHome implements TabExecutor {
 
                 } else {
                     ChatAPI.sendMessage("homes.commands.home.other.withName", new HashMap<String, String>() {{
-                        //noinspection ConstantConditions
-                        put("userName", Bukkit.getServer().getPlayer(finalUniqueId).getName());
+                        put("userName", Bukkit.getServer().getOfflinePlayer(finalUniqueId).getName());
                         put("homeName", finalName);
                         //noinspection ConstantConditions
                         put("world", homeLocation.getWorld().getName());
