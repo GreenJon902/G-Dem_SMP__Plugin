@@ -67,6 +67,9 @@ componentText:
                     otherForms:
                         "withName":
                             out: "{$componentText}  Teleported to {userName}'s home called {homeName}"
+            errors:
+                "noTeleportToOtherPermission":
+                    out: "{$componentText.errors}  You do not have permission to teleport to {userName}'s home called {homeName}"
 
 "ticks":
     commands:
